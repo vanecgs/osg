@@ -10,11 +10,10 @@ class ProgramsController extends AppController {
 		//This Subject
 		$this->loadModel('Subject');
 		$this->Subject->id = $subject;
-		$sub = $this->Subject->read();
+		$sub = $this->Subject->read(array('subid','name','description','value','status'));
 		$this->set('subject', $sub);
 		
 		//Schools with $subject in their programs
-		$this->loadModel('Program');
 		$programs = $this->Program->SubjectSubs->find('threaded', array('conditions' => array('SubjectSubs.subid' => $subject)));
 		$this->set('programs', $programs);
 		
@@ -49,7 +48,7 @@ class ProgramsController extends AppController {
 		//This Degree
 		$this->loadModel('DegreeType');
 		$this->DegreeType->id = $degree;
-		$dtype = $this->DegreeType->read();
+		$dtype = $this->DegreeType->read(array('dtid','name','description','status'));
 		$this->set('degree', $dtype);
 		
 		//Schools with $degree in their programs
@@ -81,6 +80,32 @@ class ProgramsController extends AppController {
 		else {
 			echo 'Falta';
 		}
+	}
+	
+	function degreeBySubjects($subject) {
+		$this->layout = 'ajax';
+		
+		//Pograms under Subject equals $subject
+		$programs = $this->Program->SubjectSubs->find('threaded', array('conditions' => array('SubjectSubs.subid' => $subject)));
+		
+		$array = array();
+		foreach($programs as $p) {
+			if($p['Programs']) {
+				foreach($p['Programs'] as $prog) {
+					if(!in_array($prog['dtid'],$array)) {
+						array_push($array, $prog['dtid']);
+					}
+				}
+			}
+		}
+		
+		//DegreeTypes of those Program
+		$degrees = array(0 => 'Select a Degree');
+		$this->loadModel('DegreeType');
+		$degrees = array_merge($degrees, $this->DegreeType->find('list', array('conditions' => array('dtid' => $array))));
+		
+		$this->set('degrees', $degrees);
+
 	}
 	
 	function _setSubjectMenu() {

@@ -2,13 +2,17 @@ var url = "http://localhost/onlineschool/"
 
 $(document).ready(function() {
 	$('.form_button').html('<input type="submit" value="">');
+	
+	$('#ProgramsSubjects').change(function() {
+		loadDegree($('#ProgramsSubjects').val());
+	});
 });
 
-function loadSubSubject(subject) {
-	$.post(url + 'subjectsubs/search/' + subject, function(data) {
-		$('#subjectsSub0Name').empty();
+function loadDegree(subject) {
+	$.post(url + 'programs/degreebysubjects/' + subject, function(data) {
+		$('#ProgramsDegrees').empty();
 		for(subject in data) {
-			$('#subjectsSub0Name').append('<option value="'+subject+'">'+data[subject]+'</option>');
+			$('#ProgramsDegrees').append('<option value="'+subject+'">'+data[subject]+'</option>');
 		}
 	}, 'json');
 

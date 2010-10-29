@@ -129,6 +129,10 @@ p {
 /* Box module
 ----------------------------------------------------*/
 
+.box {
+	width: 200px;
+}
+
 .box h3 {
 	width: 190px;
 	height: 23px;
@@ -346,12 +350,11 @@ h3 {
 }
 
 .school_box_header h5 a {
-	float: left;
+	float: right;
 	padding: 20px 0 0 0;
+	margin-right: 20px;
 	text-transform: uppercase;
 	text-decoration: underline;
-	position: relative;
-	left: 470px;
 	font-size: 10px;
 	color: #aee2fa;
 	font-weight: normal;
@@ -599,4 +602,513 @@ h3 {
 	font-family: Arial;
 	min-width: 200px;
 }
+
+#content.admin legend {
+	color: #249ED4 !important;
+	font-size: 20px !important;
+	padding: 0 8px 0 8px !important;
+}
+
+
+
+/* Admin Layouting
+---------------------------------------------------------------*/
+
+/** containers **/
+div.form,
+div.index,
+div.view {
+	float:right;
+	width:76%;
+	border-left:1px solid #999;
+	padding:10px 2%;
+}
+
+div.form a,
+div.index a,
+div.view a {
+	text-decoration: none !important;
+}
+
+div.form a:hover,
+div.index a:hover,
+div.view a:hover {
+	text-decoration: underline !important;
+}
+
+div.actions {
+	float:left;
+	width:16%;
+	padding:10px 1.5%;
+}
+
+div.actions h3 {
+	padding-top:0;
+	color:#777;
+}
+
+#content.admin div.actions ul li {
+	margin: 0 0 10px 0;
+	padding: 0;
+	background: none;
+}
+
+
+/** Tables **/
+
+table {
+	background: #fff;
+	border-right:0;
+	clear: both;
+	color: #333;
+	margin-bottom: 10px;
+	wi
+	dth: 100%;
+}
+
+th {
+	border:0;
+	border-bottom:2px solid #555;
+	text-align: left;
+	padding:4px;
+}
+
+th a {
+	display: block;
+	padding: 2px 4px;
+	text-decoration: none;
+}
+
+th a.asc:after {
+	content: ' â£';
+}
+
+th a.desc:after {
+	content: ' â¡';
+}
+
+table tr td {
+	background: #fff;
+	padding: 10px 6px 6px;
+	text-align: left;
+	vertical-align: top;
+	border-bottom:1px solid #ddd;
+}
+
+table .altrow td {
+	background: #DCE9EF;
+}
+
+td.actions {
+	text-align: center;
+	white-space: nowrap;
+}
+
+table td.actions a {
+	margin: 6px 6px;
+	padding:2px 5px;
+}
+
+.cake-sql-log table {
+	background: #f4f4f4;
+}
+
+.cake-sql-log td {
+	padding: 4px 8px;
+	text-align: left;
+	font-family: Monaco, Consolas, "Courier New", monospaced;
+}
+
+.cake-sql-log caption {
+	color:#fff;
+}
+
+/** Paging **/
+div.paging {
+	background:#fff;
+	color: #ccc;
+	margin-top: 1em;
+	clear:both;
+}
+
+div.paging span.disabled {
+	color: #ddd;
+	display: inline;
+}
+
+div.paging span.current {
+	color: #DCE9EF;
+}
+
+div.paging span a {
+}
+
+/** Scaffold View **/
+
+dl {
+	line-height: 2em;
+	margin: 0em 0em;
+	width: 60%;
+}
+
+dl .altrow {
+	background: #DCE9EF;
+}
+
+dt {
+	font-weight: bold;
+	padding-left: 4px;
+	vertical-align: top;
+}
+
+dd {
+	margin-left: 10em;
+	margin-top: -2em;
+	vertical-align: top;
+}
+
+/** Forms **/
+
+#content.admin form {
+	clear: both;
+	margin-right: 20px;
+	padding: 0;
+	width: 95%;
+}
+
+#content.admin fieldset {
+	border: 1px solid #ccc;
+	margin-bottom: 1em;
+	padding: 16px 20px;
+}
+
+#content.admin fieldset fieldset {
+	margin-top: 0px;
+	margin-bottom: 20px;
+	padding: 16px 10px;
+}
+
+#content.admin fieldset fieldset legend {
+	font-size: 120%;
+	font-weight: normal;
+}
+
+#content.admin fieldset fieldset div {
+	clear: left;
+	margin: 0 20px;
+}
+
+#content.admin form div {
+	clear: both;
+	margin-bottom: 1em;
+	padding: .5em;
+	vertical-align: text-top;
+}
+
+#content.admin form .input {
+	color: #444;
+}
+
+#content.admin form .required {
+	font-weight: bold;
+}
+
+#content.admin form .required label:after {
+	color: #e32;
+	content: '*';
+	display:inline;
+}
+
+#content.admin form div.submit {
+	border: 0;
+	clear: both;
+	margin-top: 10px;
+}
+
+#content.admin label {
+	display: block;
+	font-size: 110%;
+	margin-bottom:3px;
+}
+
+#content.admin input, textarea {
+	clear: both;
+	font-size: 140%;
+	font-family: Arial;
+	padding: 1%;
+	width:98%;
+}
+
+#content.admin option {
+	font-size: 120%;
+	padding: 0 3px;
+}
+
+#content.admin input[type=checkbox] {
+	clear: left;
+	float: left;
+	margin: 0px 6px 7px 2px;
+	width: auto;
+}
+
+#content.admin div.checkbox label {
+	display: inline;
+}
+
+#content.admin input[type=radio] {
+	float:left;
+	width:auto;
+	margin: 0 3px 7px 0;
+}
+
+#content.admin div.radio label {
+	margin: 0 0 6px 20px;
+}
+
+#content.admin form .submit input[type=submit] {
+	background:#62af56;
+	background: -webkit-gradient(linear, left top, left bottom, from(#a8ea9c), to(#62af56));
+	background-image: -moz-linear-gradient(top, #a8ea9c, #62af56);
+	border-color: #2d6324;
+	color: #000;
+	text-shadow: #8cee7c 0px 1px 0px;
+	width: 120px !important;
+}
+
+#content.admin form .submit input[type=submit]:hover {
+	background:#4ca83d;
+	background: -webkit-gradient(linear, left top, left bottom, from(#85e573), to(#4ca83d));
+	background-image: -moz-linear-gradient(top, #85e573, #4ca83d);
+}
+
+/** Notices and Errors **/
+
+div.message {
+	clear: both;
+	color: #fff;
+	font-size: 140%;
+	font-weight: bold;
+	margin: 0 0 1em 0;
+	background: #c73e14;
+	padding: 5px;
+}
+
+div.error-message {
+	clear: both;
+	color: #fff;
+	font-weight: bold;
+	background: #c73e14;
+}
+
+p.error {
+	background-color: #e32;
+	color: #fff;
+	font-family: Courier, monospace;
+	font-size: 120%;
+	line-height: 140%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+
+p.error em {
+	color: #000;
+	font-weight: normal;
+	line-height: 140%;
+}
+
+.notice {
+	background: #ffcc00;
+	color: #000;
+	display: block;
+	font-family: Courier, monospace;
+	font-size: 120%;
+	line-height: 140%;
+	padding: 0.8em;
+	margin: 1em 0;
+}
+
+.success {
+	background: green;
+	color: #fff;
+}
+
+/**  Actions  **/
+
+div.actions ul {
+	margin: 0;
+	padding: 0;
+}
+
+div.actions li {
+	margin:0 0 0.5em 0;
+	list-style-type: none;
+	white-space: nowrap;
+	padding: 0;
+}
+
+div.actions ul li a {
+	font-weight: normal;
+	display: block;
+	clear: both;
+}
+
+div.actions ul li a:hover {
+	text-decoration: underline;
+}
+
+#content.admin input[type=submit],
+#content.admin div.actions ul li a,
+#content.admin td.actions a {
+	font-weight:normal;
+	padding: 4px 8px;
+	background:#09679e;
+	background: -webkit-gradient(linear, left top, left bottom, from(#249ed4), to(#09679e));
+	background-image: -moz-linear-gradient(top, #249ed4, #09679e);
+	color:#fff !important;
+	border:1px solid #09679e;
+	-webkit-border-radius:8px;
+	-moz-border-radius:8px;
+	border-radius:8px;
+	text-shadow: #999 0px -1px;
+	min-width: 0;
+	text-decoration: none !important;
+}
+#content.admin input[type=submit]:hover,
+#content.admin div.actions ul li a:hover,
+#content.admin td.actions a:hover {
+	background: #249ed4;
+	background: -webkit-gradient(linear, left top, left bottom, from(#249ed4), to(#249ed4));
+	text-decoration: none !important;
+}
+
+/** Related **/
+div.related {
+	clear: both;
+	display: block;
+}
+
+/** Debugging **/
+
+pre {
+	color: #000;
+	background: #f0f0f0;
+	padding: 1em;
+}
+
+pre.cake-debug {
+	background: #ffcc00;
+	font-size: 120%;
+	line-height: 140%;
+	margin-top: 1em;
+	overflow: auto;
+	position: relative;
+}
+
+div.cake-stack-trace {
+	background: #fff;
+	color: #333;
+	margin: 0px;
+	padding: 6px;
+	font-size: 120%;
+	line-height: 140%;
+	overflow: auto;
+	position: relative;
+}
+
+div.cake-code-dump pre {
+	position: relative;
+	overflow: auto;
+}
+
+div.cake-stack-trace pre, div.cake-code-dump pre {
+	color: #000;
+	background-color: #F0F0F0;
+	margin: 0px;
+	padding: 1em;
+	overflow: auto;
+}
+
+div.cake-code-dump pre, div.cake-code-dump pre code {
+	clear: both;
+	font-size: 12px;
+	line-height: 15px;
+	margin: 4px 2px;
+	padding: 4px;
+	overflow: auto;
+}
+
+div.cake-code-dump span.code-highlight {
+	background-color: #ff0;
+	padding: 4px;
+}
+
+div.code-coverage-results div.code-line {
+	padding-left:5px;
+	display:block;
+	margin-left:10px;
+}
+
+div.code-coverage-results div.uncovered span.content {
+	background:#ecc;
+}
+
+div.code-coverage-results div.covered span.content {
+	background:#cec;
+}
+
+div.code-coverage-results div.ignored span.content {
+	color:#aaa;
+}
+
+div.code-coverage-results span.line-num {
+	color:#666;
+	display:block;
+	float:left;
+	width:20px;
+	text-align:right;
+	margin-right:5px;
+}
+
+div.code-coverage-results span.line-num strong {
+	color:#666;
+}
+
+div.code-coverage-results div.start {
+	border:1px solid #aaa;
+	border-width:1px 1px 0px 1px;
+	margin-top:30px;
+	padding-top:5px;
+}
+
+div.code-coverage-results div.end {
+	border:1px solid #aaa;
+	border-width:0px 1px 1px 1px;
+	margin-bottom:30px;
+	padding-bottom:5px;
+}
+
+div.code-coverage-results div.realstart {
+	margin-top:0px;
+}
+
+div.code-coverage-results p.note {
+	color:#bbb;
+	padding:5px;
+	margin:5px 0 10px;
+	font-size:10px;
+}
+
+div.code-coverage-results span.result-bad {
+	color: #a00;
+}
+
+div.code-coverage-results span.result-ok {
+	color: #fa0;
+}
+
+div.code-coverage-results span.result-good {
+	color: #0a0;
+}
+
+
 

@@ -3,7 +3,7 @@
 <div class="blurb">
 	<div class="fleft">
 		<h1><?php echo $degree['DegreeType']['name']?></h1>
-		<p>Most associate degree programs last two years and require the student to obtain 60 credits to graduate. Associate programs are perfect for individuals who either want to gain more credentials for their career, save money by transferring later into a four-year program, or gain a quick degree to enter the work force. Associate programs are offered on a plethora of different topics, including information technology, health care, and business finance. Further, individuals with an associate's degree make over $400,000 more over the course of their lifetimes than those who only received a G.E.D. or high school diploma.</p>
+		<p><?php echo $degree['DegreeType']['description']?></p>
 	</div>
 	<div class="fright">
 		
