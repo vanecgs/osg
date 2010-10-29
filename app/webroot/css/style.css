@@ -1,0 +1,602 @@
+/*
+Project: Online School Go
+File: css/style.css
+*/
+
+
+/* Main Layouting
+---------------------------------------------------------------*/
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 12px;
+	color: #666;
+	background: url(../img/pics/bg.gif) repeat-x top #fff;
+}
+
+#wrapper {
+	width: 960px;
+	margin: 0 auto;
+}
+
+#header {
+	background: url(../img/pics/bg_header.png) no-repeat;
+	height: 105px;
+	margin: 25px 0 0 0;
+	padding: 0 40px 0 40px;
+	clear: both;
+}
+
+#header h2 {
+	float: left;
+	display: block;
+	width: 277px;
+	height: 45px;
+	text-indent: -9999px;
+	background: url(../img/pics/h2_lotsofschools.png) no-repeat;
+	margin: 45px 0 0 0;
+	position: relative;
+	left: 450px;
+}
+
+.logo {
+	float: left;
+	margin: 35px 0 0 0;
+}
+
+#content {
+	background: url(../img/pics/bg_content.png) repeat-y;
+	padding: 15px 40px 10px 40px;
+}
+
+#footer {
+	background: url(../img/pics/bg_footer.png) top no-repeat;
+	clear: both;
+	min-height: 30px;
+	padding: 50px 0 50px 0;
+	text-align: center;
+}
+
+#footer a {
+	color: #666;
+	text-decoration: underline;
+}
+
+#footer a:hover {
+	text-decoration: none;
+}
+
+p {
+	line-height: 20px;
+}
+
+
+/* Navigation Bar 
+----------------------------------------------------*/
+
+#navigation {
+	background: url(../img/pics/bg_navigation.png) no-repeat;
+	height: 30px;
+	padding: 20px 40px 0 40px; 
+}
+
+#navigation ul li {
+	float: left;
+}
+
+#navigation ul li a {
+	color: #fff;
+	font-size: 14px;
+	text-decoration: none;
+	text-shadow: #666 0 -1px;
+	margin: 0 10px 0 10px;
+}
+
+#navigation ul li a:hover {
+	color: #8fceea;
+	text-shadow: none;
+}
+
+/* Columns 
+----------------------------------------------------*/
+
+.col_a {
+	width: 200px;
+	float: left;
+	margin-right: 25px;
+}
+
+.col_a h3 a {
+	display: block;
+	width: 200px;
+	height: 23px;
+	color: #fff;
+	text-shadow: #666 0 -1px;
+	background: url(../img/pics/button_h3.png) no-repeat;
+	font-size: 16px;
+	text-align: center;
+	text-decoration: none;
+	padding: 7px 0 0 0;
+	margin: 0 0 10px 0;
+}
+
+.col_b {
+	width: 650px;
+	float: left;
+}
+
+
+/* Box module
+----------------------------------------------------*/
+
+.box h3 {
+	width: 190px;
+	height: 23px;
+	color: #fff;
+	text-shadow: #666 0 -1px;
+	background: url(../img/pics/bg_top_box.png) no-repeat;
+	font-size: 16px;
+	padding: 7px 0 0 10px;
+	margin: 0;
+}
+
+.box ul {
+	margin: 0 0 20px 0;
+	padding-bottom: 15px;
+	background: url(../img/pics/bg_box.png) no-repeat bottom;
+}
+
+.box ul li.odd {
+	background:none repeat scroll 0 0 #dce9ef;
+}
+
+.box ul li {
+	background:none repeat scroll 0 0 #fff;
+	border-color: #999;
+	border-style: solid;
+	border-width: 0 1px;
+	font-size: 12px;
+	line-height: 21px;
+	padding-left: 10px;
+}
+
+.box ul li a {
+	font-size: 12px;
+	text-decoration: none;
+	color: #00548c;
+}
+
+.box ul li a:hover {
+	text-decoration: underline;
+}
+
+
+/* Blurb module 
+----------------------------------------------------*/
+
+h1 {
+	color: #249ed4;
+	font-size: 24px;
+	font-weight: bold;
+	line-height: 30px;
+	margin: 0 0 10px 0;
+	letter-spacing: -1px;
+}
+
+.blurb {
+	margin: 0 0 20px 0;
+}
+
+.blurb .fleft {
+	width: 425px;
+}
+
+.blurb img {
+	border: 1px solid #999;
+}
+
+
+/* Search module 
+----------------------------------------------------*/
+
+#search {
+	background: url(../img/pics/bg_search.png) no-repeat;
+	width: 620px;
+	height: 110px;
+	padding: 15px;
+	margin: 0 0 20px 0;
+}
+
+#search.minimize {
+	width: 170px;
+	background: url(../img/pics/bg_search_minimize.png) no-repeat;
+	margin-bottom: 20px;
+	padding-bottom: 0;
+	height: 205px;
+}
+
+#search.minimize label,
+#search.minimize input,
+#search.minimize select {
+	display: block;
+	margin: 0 0 5px 0; 
+}
+
+#search.minimize .form_button {
+	margin: 15px auto;
+	background: url(../img/pics/button_getstarted.png) no-repeat;
+	width: 141px;
+	height: 51px;
+	float: none;
+	text-indent: -9999px;
+	position: relative;
+	top: 0;
+	right: 5px;
+}
+
+#search h2 {
+	font-size: 22px;
+	color: #fff;
+	text-shadow: #666 0 -1px;
+	letter-spacing: -1px;
+	font-weight: normal;
+	margin-bottom: 25px;
+}
+
+#search label {
+	font-size: 14px;
+	color: #fff;
+	margin: 0 8px 0 0;
+	vertical-align: middle;
+}
+
+#search select {
+	margin: 0 8px 0 0;
+	vertical-align: middle;
+	width: 135px;
+}
+
+#search .form_button {
+	vertical-align: middle;
+	margin: 0 0 0 10px;
+	background: url(../img/pics/button_getstarted.png) no-repeat;
+	width: 141px;
+	height: 51px;
+	float: right;
+	position: relative;
+	top: -15px;
+}
+
+#search .form_button input {
+	background: transparent;
+	border: none;
+	width: 141px;
+	height: 51px;
+}
+
+
+/* Program Table
+----------------------------------------------------*/
+
+#program_table table {
+	border-spacing:0;
+	width:100%;
+	margin: 0 0 20px 0;
+}
+
+#program_table td.topR {
+	border:1px solid #eaeaea;
+}
+
+#program_table td {
+	line-height:normal;
+	padding: 10px 10px 8px;
+}
+
+#program_table a {
+	color: #666;
+	text-decoration: none;
+}
+
+#program_table .table_title {
+	margin-bottom: 5px;
+}
+
+#program_table .table_title a {
+	background-color: #DCE9EF;
+	display: block;
+	padding: 4px;
+	font-weight: bold;
+	color: #00548C;
+}
+
+
+/* Schools module
+----------------------------------------------------*/
+
+h3 {
+	color: #249ed4;
+	font-size: 20px;
+	margin-bottom: 20px;
+	letter-spacing: -1px;
+}
+
+.school_box {
+	background: #000;
+	padding-bottom: 5px;
+	background: url(../img/pics/bg_schoolbox_botton.png) no-repeat bottom;
+	margin: 0 0 20px 0;
+}
+
+.school_box_header {
+	background: url(../img/pics/bg_top_schoolbox.png) no-repeat;
+	height: 48px;
+}
+
+.school_box_header h3 {
+	color: #fff !important;
+	font-size: 18px !important;
+	font-weight: normal;
+	letter-spacing: -1px;
+	text-shadow: #666 0 -1px;
+	padding: 15px 0 0 15px;
+	float: left;
+	margin: 0;
+	
+}
+
+.school_box_header h5 a {
+	float: left;
+	padding: 20px 0 0 0;
+	text-transform: uppercase;
+	text-decoration: underline;
+	position: relative;
+	left: 470px;
+	font-size: 10px;
+	color: #aee2fa;
+	font-weight: normal;
+}
+
+.school_box_header h5 a:hover {
+	text-decoration: none;
+}
+
+.school_box_body {
+	clear: both;
+	background: url(../img/pics/bg_schoolbox_body.gif) repeat-y;
+	padding: 0 15px 0 15px;
+}
+
+.school_box_body a {
+	color: #2181ae;
+	font-weight: 500;
+	text-decoration: underline;
+	text-transform: uppercase;
+	font-size: 10px;
+	margin: 15px 0 0 0;
+	display: block;
+}
+
+.school_box_body a:hover {
+	text-decoration: none;
+}
+
+.school_box .resume {
+	float: left;
+	width: 405px;
+	padding: 15px 0 0 0;
+	margin: 0 15px 0 0;
+}
+
+.school_box .resume img {
+	float: left;
+	border: 1px solid #999;
+	margin: 0 15px 0 0;
+}
+
+.school_box .resume h4 {
+	font-size: 14px;
+	color: #474747;
+	font-weight: 500;
+	margin: 0 0 15px 0;
+}
+
+.school_box .resume ul li {
+	margin: 0 0 5px 0;
+}
+
+.school_box .resume ul li a {
+	background: url(../img/pics/bullet.gif) no-repeat 0 6px;
+	padding: 0 0 0 10px;
+	text-decoration: none;
+	color: #666;
+	font-weight: normal;
+	text-transform: none;
+	font-size: 12px;
+	display: inline;
+}
+
+.school_box .resume ul li a:hover {
+	color: #249ed4;
+}
+
+.school_box .extract {
+	float: right;
+	width: 185px;
+	padding: 15px 0 0 15px;
+	background: url(../img/pics/bg_extract.gif) no-repeat top left;
+}
+
+.school_box .school_table {
+	margin: 25px 0 0 0;
+	padding-bottom: 15px;
+	text-align: center;
+}
+
+.school_box td {
+	font-size: 10px;
+	padding: 4px;
+	background-color: #e7e7e7;
+	color: #6d6d6d;
+	line-height: normal;
+	border-right: 1px solid #b4b4b4;
+	border-left: 1px solid #b4b4b4;
+	border-bottom: 1px solid #b4b4b4;
+}
+
+.school_box td.topR {
+	background-color: #b4b4b4;
+	color: #fff;
+	font-weight: normal;
+}
+
+
+
+/* Internal Layouting
+---------------------------------------------------------------*/
+
+#content.internal .col_a {
+	width: 400px;
+	float: left;
+	margin-right: 25px;
+	padding-right: 20px;
+	border-right: 1px solid #eaeaea;
+}
+
+#content.internal .col_b {
+	width: 420px;
+	float: right;
+}
+
+#content.internal h1,
+#content.admin h1 {
+	color: #249ED4;
+	font-size: 24px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 30px;
+	margin: 0 0 10px 0;
+}
+
+#content.internal h2,
+#content.admin h2 {
+	color: #00548C;
+	font-size: 20px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 30px;
+	margin: 0 0 10px 0;
+}
+
+#content.internal h3,
+#content.admin h3 {
+	color: #666;
+	font-size: 18px;
+	font-weight: bold;
+	letter-spacing: -1px;
+	line-height: 30px;
+	margin:	10px 0 10px 0;
+}
+
+#content.internal h4,
+#content.admin h4 {
+	color: #666;
+	font-size: 16px;
+	font-weight: normal;
+	margin:	10px 0 10px 0;
+}
+
+#content.internal h5,
+#content.admin h5 {
+	color: #666;
+	font-size: 14px;
+	margin:	10px 0 10px 0;
+	text-transform: uppercase;
+}
+
+#content.internal h6,
+#content.admin h6 {
+	color: #249ED4;
+	font-size: 12px;
+	margin:	10px 0 10px 0;
+}
+
+#content.internal p,
+#content.admin p {
+	margin-bottom: 10px;
+}
+
+#content.internal strong,
+#content.admin strong {
+	color: #333;
+	font-weight: bold;
+}
+
+#content.internal em,
+#content.admin em {
+	font-style: italic;
+}
+
+#content.internal a,
+#content.admin a {
+	color: #2181AE;
+	font-weight: 500;
+	text-decoration: underline;
+}
+
+#content.internal a:hover,
+#content.admin a:hover {
+	text-decoration: none;
+}
+
+#content.internal ul,
+#content.admin ul {
+	margin: 0 0 15px 0;
+}
+
+#content.internal ul li,
+#content.admin ul li {
+	margin: 0 0 5px 10px;
+	background: url(../img/pics/bullet.gif) no-repeat scroll 0 6px transparent;
+	padding: 0 0 0 10px;
+}
+
+#content.internal img,
+#content.admin img {
+	border: 1px solid #999;
+	text-align: center;
+	margin: 0 0 20px 0;
+}
+
+#content.internal label,
+#content.internal input,
+#content.internal select,
+#content.internal textarea,
+#content.admin label,
+#content.admin input,
+#content.admin select,
+#content.admin textarea {
+	display: block;
+	margin-bottom: 10px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+}
+
+#content.internal label,
+#content.admin label {
+	margin-bottom: 5px;
+	color: #333;
+}
+
+#content.internal input,
+#content.internal textarea,
+#content.admin input,
+#content.admin textarea {
+	border: 1px solid #999;
+	padding: 3px;
+	font-size: 11px;
+	font-family: Arial;
+	min-width: 200px;
+}
+
