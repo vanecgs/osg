@@ -30,16 +30,10 @@ class ProgramsController extends AppController {
 		$this->set('schools', $schools);
 		
 		$this->_setSubjectMenu();
-		
-		//Subject Options for Search form
-		$subject_opts = array_merge(array(0=> 'Select a Subject'), $this->Subject->find('list'));
-		$this->set('subject_opts', $subject_opts);
+		$this->_setSubjectForm();
 		
 		$this->_setDegreeTypeMenu();		
-		
-		//DegreeType Options for Search form
-		$degree_opts = array_merge(array(0=> 'Select a Degree'),  $this->DegreeType->find('list'));
-		$this->set('degree_opts', $degree_opts);
+		$this->_setDegreeTypeForm();		
 	}
 	
 	function degree($degree) {
@@ -61,24 +55,50 @@ class ProgramsController extends AppController {
 		$this->set('dtschools', $dtschools);
 		
 		$this->_setSubjectMenu();
-		
-		//Subject Options for Search form
-		$subject_opts = array_merge(array(0=> 'Select a Subject'), $this->Subject->find('list'));
-		$this->set('subject_opts', $subject_opts);
+		$this->_setSubjectForm();
 		
 		$this->_setDegreeTypeMenu();
-		
-		//DegreeType Options for Search form
-		$degree_opts = array_merge(array(0=> 'Select a Degree'),  $this->DegreeType->find('list'));
-		$this->set('degree_opts', $degree_opts);
+		$this->_setDegreeTypeForm();		
 	}
 	
 	function search() {
+		$this->layout = 'result';
 		if($this->data['Programs']['subjects'] > 0 && $this->data['Programs']['degrees'] <= 0) {
 			$this->subject($this->data['Programs']['subjects']);
 		}
 		else {
-			echo 'Falta';
+			$programs = $this->Program->SubjectSubs->find('threaded', array('conditions' => array('SubjectSubs.subid' => $this->data['Programs']['subjects'])));
+			
+			$array = array();
+			
+			foreach($programs as $program) {
+				if($program['Programs']) {
+					foreach($program['Programs'] as $p) {
+						array_push($array, $p['pid']);
+					}
+				}
+			}
+			
+			
+			$this->loadModel('School');
+			$schools = $this->School->Programs->find('threaded', array('conditions' => array('Programs.pid' => $array, 'Programs.dtid' => $this->data['Programs']['degrees'])));
+			
+			echo '<pre>';
+			print_r($schools);
+			echo '</pre>';
+			
+			$this->set('schools', $schools);
+			
+			$this->loadModel('DegreeType');
+			$degree = $this->DegreeType->find('first', array('conditions' => array('DegreeType.dtid' => $this->data['Programs']['degrees'])));
+			
+			$this->set('degree', $degree);
+			
+			$this->_setSubjectMenu();
+			$this->_setSubjectForm();
+			
+			$this->_setDegreeTypeMenu();
+			$this->_setDegreeTypeForm();
 		}
 	}
 	
@@ -120,6 +140,20 @@ class ProgramsController extends AppController {
 		$this->loadModel('DegreeType');
 		$degrees = $this->DegreeType->find('threaded');
 		$this->set('degrees', $degrees);
+	}
+	
+	function _setSubjectForm() {
+		//Subject Options for Search form
+		$this->loadModel('Subject');
+		$subject_opts = array_merge(array(0=> 'Select a Subject'), $this->Subject->find('list'));
+		$this->set('subject_opts', $subject_opts);
+	}
+	
+	function _setDegreeTypeForm() {
+		//DegreeType Options for Search form
+		$this->loadModel('DegreeType');
+		$degree_opts = array_merge(array(0=> 'Select a Degree'),  $this->DegreeType->find('list'));
+		$this->set('degree_opts', $degree_opts);
 	}
 }
 ?>
