@@ -29,7 +29,7 @@
 <div class="school_box"> 
 	<div class="school_box_header">
 		<h3><?php echo $school['School']['name']?></h3>
-		<h5><?php echo $this->Html->link('LEARN MORE', array('controller' => 'school', 
+		<h5><?php echo $this->Html->link('LEARN MORE', array('controller' => 'schools', 
 															'action' => 'info', 
 															$school['School']['sid']));?></h5>
 	</div>
@@ -48,13 +48,13 @@
 					<?php endif;?>
 				<?php endforeach;?>
 			</ul>
-			<span><?php echo $this->Html->link('See More School Programs >>', array('controller' => 'school', 
+			<span><?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
 															'action' => 'info', 
 															$school['School']['sid']));?></span>
 		</div>
 		<div class="extract">
 			<p><?php echo $school['School']['description']?></p>
-			<?php echo $this->Html->link('See More School Programs >>', array('controller' => 'school', 
+			<?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
 															'action' => 'info', 
 															$school['School']['sid']));?>
 		</div>
