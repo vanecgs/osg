@@ -18,6 +18,7 @@
 		echo $javascript->link('jquery.js');
 		echo $javascript->link('custom.js');
 	endif;
+	Configure::load('osg');
  ?> 
 </head>
 <!-- End: Head -->
