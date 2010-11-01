@@ -21,12 +21,12 @@ class ProgramsController extends AppController {
 		
 		foreach($programs as $program) {
 			foreach($program['Programs'] as $pid) {
-				array_push($array, $pid['sid']);
+				if(!in_array($pid['sid'], $array)) array_push($array, $pid['sid']);
 			}
 		}
 		
 		$this->loadModel('School');
-		$schools = $this->School->Programs->find('threaded', array('conditions' => array('School.sid' => $array)));
+		$schools = $this->School->find('threaded', array('conditions' => array('School.sid' => $array)));
 		$this->set('schools', $schools);
 		
 		$this->_setSubjectMenu();
@@ -67,6 +67,14 @@ class ProgramsController extends AppController {
 			$this->subject($this->data['Programs']['subjects']);
 		}
 		else {
+			$this->set('search_degree', true);
+			
+			//This Subject
+			$this->loadModel('Subject');
+			$this->Subject->id = $this->data['Programs']['subjects'];
+			$sub = $this->Subject->read(array('subid','name','description','value','status'));
+			$this->set('subject', $sub);
+			
 			$programs = $this->Program->SubjectSubs->find('threaded', array('conditions' => array('SubjectSubs.subid' => $this->data['Programs']['subjects'])));
 			
 			$array = array();
@@ -81,13 +89,14 @@ class ProgramsController extends AppController {
 			
 			
 			$this->loadModel('School');
+			$schoolsid = $this->Program->find('all', array('conditions' => array('Program.pid' => $array, 'Program.dtid' => $this->data['Programs']['degrees']),
+																	'fields' => array('DISTINCT Program.sid', 'School.*')));
+			
+			
 			$schools = $this->School->Programs->find('threaded', array('conditions' => array('Programs.pid' => $array, 'Programs.dtid' => $this->data['Programs']['degrees'])));
-			
-			echo '<pre>';
-			print_r($schools);
-			echo '</pre>';
-			
+						
 			$this->set('schools', $schools);
+			$this->set('schoolsid', $schoolsid);
 			
 			$this->loadModel('DegreeType');
 			$degree = $this->DegreeType->find('first', array('conditions' => array('DegreeType.dtid' => $this->data['Programs']['degrees'])));
