@@ -35,7 +35,7 @@
  
 <div id="header"> 
 	<?php
-		echo $html->image('pics/osg_logo.png', array('alt' => 'Online School Go', 'class' => 'logo', 'width' => 134, 'height' => 64,  'url' => array(URL)));
+		echo $html->image('pics/osg_logo.png', array('alt' => 'Online School Go', 'class' => 'logo', 'width' => 134, 'height' => 64,  'url' => Configure::read('Site.url')));
 	?>
 	<h2>Lots of Schools, Find yours!</h2>
 </div>
