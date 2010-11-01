@@ -31,7 +31,7 @@
 	<div class="school_box"> 
 		<div class="school_box_header">
 			<h3><?php echo $school['School']['name']?></h3>
-			<h5><?php echo $this->Html->link('LEARN MORE', array('controller' => 'school', 
+			<h5><?php echo $this->Html->link('LEARN MORE', array('controller' => 'schools', 
 																'action' => 'info', 
 																$school['School']['sid'],
 																$subject['Subject']['subid']));?></h5>
@@ -51,14 +51,14 @@
 					<li><?php echo $p['name']?></li>
 				<?php endif; endforeach; endif; endforeach; ?>
 				</ul>
-				<span><?php echo $this->Html->link('See More School Programs >>', array('controller' => 'school', 
+				<span><?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
 																'action' => 'info', 
 																$school['School']['sid'],
 																$subject['Subject']['subid']));?></span>
 			</div>
 			<div class="extract">
 				<p><?php echo $school['School']['description']?></p>
-				<?php echo $this->Html->link('See More School Programs >>', array('controller' => 'school', 
+				<?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
 																'action' => 'info', 
 																$school['School']['sid'],
 																$subject['Subject']['subid']));?>
@@ -158,7 +158,7 @@
 	<div class="school_box"> 
 		<div class="school_box_header">
 			<h3><?php echo $sid['School']['name']?></h3>
-			<h5><?php echo $this->Html->link('LEARN MORE', array('controller' => 'school', 
+			<h5><?php echo $this->Html->link('LEARN MORE', array('controller' => 'schools', 
 																'action' => 'info', 
 																$sid['School']['sid'], $subject['Subject']['subid']));?></h5>
 		</div>
@@ -175,13 +175,13 @@
 					<li><?php echo $school['Programs']['name']?></li>
 				<?php endif; endforeach;  ?>
 				</ul>
-				<span><?php echo $this->Html->link('See More School Programs >>', array('controller' => 'school', 
+				<span><?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
 																'action' => 'info', 
 																$sid['School']['sid'], $subject['Subject']['subid']));?></span>
 			</div>
 			<div class="extract">
 				<p><?php echo $sid['School']['description']?></p>
-				<?php echo $this->Html->link('See More School Programs >>', array('controller' => 'school', 
+				<?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
 																'action' => 'info', 
 																$sid['School']['sid'], $subject['Subject']['subid']));?>
 			</div>
