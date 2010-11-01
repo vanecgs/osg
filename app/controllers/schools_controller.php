@@ -2,9 +2,10 @@
 class SchoolsController extends AppController {
 	var $name = 'Schools';
 	var $scaffold = 'admin';
+	var $helpers = array('Javascript');
 	
 	function info($sid, $subid = null) {
-		$this->layout = 'defaultpage';
+		$this->layout = 'result';
 		$this->loadModel('Programs');
 		if($subid) {
 		}
