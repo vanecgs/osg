@@ -32,12 +32,12 @@
 		<h5><?php echo $this->Html->link('LEARN MORE', array('controller' => 'school', 
 															'action' => 'info', 
 															$school['School']['sid'],
-															$school['SubjectSubs'][0]['subid']));?></h5>
+															$subject['Subject']['subid']));?></h5>
 	</div>
 	<div class="school_box_body">
 		<div class="resume">
 			<?php
-				echo $html->image($school['School']['logo'], array('alt' => $school['School']['name'], 'width' => 90, 'height' => 90, 'url' => array('controller' => 'school', 'action' => 'info', $school['School']['sid'], $school['SubjectSubs'][0]['subid'])));
+				echo $html->image($school['School']['logo'], array('alt' => $school['School']['name'], 'width' => 90, 'height' => 90, 'url' => array('controller' => 'school', 'action' => 'info', $school['School']['sid'], $subject['Subject']['subid'])));
 			?>
 			<h4><?php echo $school['School']['punch']?></h4>
 			<ul>
@@ -52,14 +52,14 @@
 			<span><?php echo $this->Html->link('See More School Programs >>', array('controller' => 'school', 
 															'action' => 'info', 
 															$school['School']['sid'],
-															$school['SubjectSubs'][0]['subid']));?></span>
+															$subject['Subject']['subid']));?></span>
 		</div>
 		<div class="extract">
 			<p><?php echo $school['School']['description']?></p>
 			<?php echo $this->Html->link('See More School Programs >>', array('controller' => 'school', 
 															'action' => 'info', 
 															$school['School']['sid'],
-															$school['SubjectSubs'][0]['subid']));?>
+															$subject['Subject']['subid']));?>
 		</div>
 		
 		<hr class="clear" />

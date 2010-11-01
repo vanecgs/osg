@@ -47,9 +47,8 @@ class ProgramsController extends AppController {
 		
 		//Schools with $degree in their programs
 		$this->loadModel('School');
-		$schools = $this->School->Programs->find('threaded', array('conditions' => array('Programs.dtid' => $degree)));
+		$schools = $this->School->Programs->find('all', array('conditions' => array('Programs.dtid' => $degree), 'fields' => array('DISTINCT Programs.sid','School.*')));
 		$this->set('schools', $schools);
-		
 		
 		$dtschools = $this->School->Programs->find('threaded', array('conditions' => array('Programs.dtid' => $degree)));
 		$this->set('dtschools', $dtschools);

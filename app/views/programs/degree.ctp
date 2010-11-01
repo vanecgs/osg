@@ -31,8 +31,7 @@
 		<h3><?php echo $school['School']['name']?></h3>
 		<h5><?php echo $this->Html->link('LEARN MORE', array('controller' => 'school', 
 															'action' => 'info', 
-															$school['School']['sid'],
-															$school['SubjectSubs'][0]['subid']));?></h5>
+															$school['School']['sid']));?></h5>
 	</div>
 	<div class="school_box_body">
 		<div class="resume">
