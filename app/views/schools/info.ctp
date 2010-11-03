@@ -14,36 +14,18 @@
 <h3><?php echo $degree['DegreeType']['name'] ?></h3>
 
 <ul>
-	<li>List item 1</li>
-	<li>List item 2</li>
-	<li>List item 3</li>
-	<li>List item 4</li>
-	<li>List item 5</li>
+	<?php foreach($programs as $program): ?>
+	<?php if($program['Program']['dtid'] == $degree['DegreeType']['dtid']): ?>
+	<li><?php echo $program['Program']['name']?></li>
+	<?php endif; endforeach; ?>
 </ul>
 
 <?php endforeach;?>
 
-
+<?php if(!empty($school['School']['accred_by'])): ?>
 <h2>Accrediting Agency</h2>
-
-<h4>Main title Heading 4</h4>
-
-<ul>
-	<li><a href="#">link 1</a></li>
-	<li><a href="#">link 1</a></li>
-	<li><a href="#">link 1</a></li>
-	<li><a href="#">link 1</a></li>
-	<li><a href="#">link 1</a></li>
-</ul>
-
-<h5>Main title Heading 5</h5>
-
-<p>Lorem ipsum dolor <em>sit amet</em>, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <a href="#">quis nostrud exercitation ullamco</a> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint <strong>occaecat cupidatat non proident</strong>, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-<h6>Main title Heading 6</h6>
-
-<p>Lorem ipsum dolor <em>sit amet</em>, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <a href="#">quis nostrud exercitation ullamco</a> laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint <strong>occaecat cupidatat non proident</strong>, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
+<ul><li><?php echo $school['School']['accred_by']?></li></ul>
+<?php endif;?>
 
 </div>
 
@@ -54,9 +36,12 @@
  
 <div class="col_b">
 	<form action="" method="post">
-		
-		<img src="pics/uop.gif" alt="uop" width="311" height="80" align="middle" />
-		
+		<?php
+			if(!empty($school['School']['image'])):
+				echo $html->image($school['School']['image'], array('alt' => $school['School']['name'], 'class' => 'logo', 'width' => 311, 'height' => 80, 'align' => 'middle' ,'url' => $school['School']['url']));
+			endif;
+		?>
+				
 		<h2>Request Information Form</h2>
 		
 		<p>Please fill out the form below to get more information about the programs offered by University of Phoenix - Business.</p>
