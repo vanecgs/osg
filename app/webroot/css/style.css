@@ -611,6 +611,33 @@ h3 {
 
 
 
+/* Table Listing
+---------------------------------------------------------------*/
+
+.alphabetical {
+	margin-bottom: 15px;
+}
+
+#listings a,
+.alphabetical a {
+	color:#00548C;
+	text-decoration: none;
+}
+
+#listings a:hover,
+.alphabetical a:hover {
+	text-decoration: underline;
+}
+
+.ltitle {
+	background: #DCE9EF;
+	padding: 4px;
+	margin-top: 10px;
+}
+
+
+
+
 /* Admin Layouting
 ---------------------------------------------------------------*/
 
