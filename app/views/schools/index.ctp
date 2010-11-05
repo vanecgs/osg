@@ -35,7 +35,7 @@
 									<?php foreach($letter[0] as $school): ?>
 										<tr><td>
 											<?php echo $this->Html->link($school['School']['name'], array('controller' => 'schools', 'action' => 'info', $school['School']['sid']));?>
-										</tr></td>
+										</td></tr>
 									<?php endforeach; ?>			  
 								</tbody>
 							</table>
