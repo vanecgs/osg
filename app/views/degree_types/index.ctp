@@ -46,11 +46,11 @@
 									<?php foreach($subject['SubjectSubs'] as $subjectsub): ?>
 										<tr>
 											<td width="25%">
-											<?php echo $this->Html->link($subjectsub['name'], array('controller' => 'schools', 'action' => 'info', $subjectsub['ssid']));?>
+											<?php echo $this->Html->link($subjectsub['name'], array('controller' => 'programs', 'action' => 'subjectsub', $subjectsub['ssid']));?>
 											</td>
 											<td><?php 
 												echo substr($subjectsub['description'], 0, 150)."...\t"; 
-												echo $this->Html->link('Read More', array('controller' => 'schools', 'action' => 'info', $subjectsub['ssid']));
+												echo $this->Html->link('Read More', array('controller' => 'programs', 'action' => 'subjectsub', $subjectsub['ssid']));
 											?></td>
 										</tr
 									<?php endforeach; ?>			  

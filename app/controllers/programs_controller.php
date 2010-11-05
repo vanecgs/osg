@@ -60,6 +60,66 @@ class ProgramsController extends AppController {
 		$this->_setDegreeTypeForm();		
 	}
 	
+	function subjectsub($subjectsub) {
+		$this->layout = 'result';
+		
+		$this->loadModel('School');
+		//Schools in $subjectsub
+		$options['joins'] = array(
+			array('table' => 'programs',
+				'alias' => 'Programs',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'School.sid = Programs.sid',
+				)
+			),
+			array('table' => 'programs_subjectsubs',
+				'alias' => 'ProgramsSubjectSubs',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'Programs.pid = ProgramsSubjectSubs.pid',
+				)
+			),
+			array('table' => 'subject_subs',
+				'alias' => 'SubjectSubs',
+				'type' => 'LEFT',
+				'conditions' => array(
+					'ProgramsSubjectSubs.ssid = SubjectSubs.ssid',
+				)
+			)
+		);
+		
+		$options['conditions'] = array(
+			'SubjectSubs.ssid' => $subjectsub
+		);
+		
+		$options['fields'] = array(
+			'School.*','Programs.*', 'SubjectSubs.*'
+		);
+		
+		
+		$programs = $this->School->find('threaded',$options);
+		
+		$options['group'] = array(
+			'School.sid'
+		);
+		
+		$schools = $this->School->find('threaded',$options);
+		
+		$this->loadModel('SubjectSub');
+		$subjectsub = $this->SubjectSub->find('first', array('conditions' => array('SubjectSub.ssid' => $subjectsub)));
+		
+		$this->set('schools', $schools);
+		$this->set('programs', $programs);
+		$this->set('subjectsub', $subjectsub);
+		
+		//Set Menus
+		$this->_setSubjectMenu();
+		$this->_setSubjectForm();		
+		$this->_setDegreeTypeMenu();
+		$this->_setDegreeTypeForm();		
+	}
+	
 	function search() {
 		$this->layout = 'result';
 		if($this->data['Programs']['subjects'] > 0 && $this->data['Programs']['degrees'] <= 0) {
