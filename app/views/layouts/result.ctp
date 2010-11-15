@@ -61,15 +61,12 @@
 	
 	<?php echo $this->element('searchform'); ?>
  
-	<h3><a href="#">Online Schools</a></h3> 
-	<h3><a href="#">Online Degrees</a></h3> 
+	<h3><a href="/onlineschool/schools/">Online Schools</a></h3> 
+	<h3><a href="/onlineschool/degrees/">Online Degrees</a></h3> 
  
 	<?php echo $this->element('subjectmenu'); ?>
  
 	<?php echo $this->element('degreemenu'); ?>
- 
-	<h3><a href="#">College Reviews</a></h3> 
-	<h3><a href="#">Careers</a></h3>
 
 	<div class="box"> 
 		<h3>Resources</h3> 
