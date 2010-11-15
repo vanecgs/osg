@@ -10,7 +10,7 @@ class ProgramsController extends AppController {
 		//This Subject
 		$this->loadModel('Subject');
 		$this->Subject->id = $subject;
-		$sub = $this->Subject->read(array('subid','name','description','value','status'));
+		$sub = $this->Subject->read(array('subid','name','description','status'));
 		$this->set('subject', $sub);
 		
 		//Schools with $subject in their programs
@@ -131,7 +131,7 @@ class ProgramsController extends AppController {
 			//This Subject
 			$this->loadModel('Subject');
 			$this->Subject->id = $this->data['Programs']['subjects'];
-			$sub = $this->Subject->read(array('subid','name','description','value','status'));
+			$sub = $this->Subject->read(array('subid','name','description','status'));
 			$this->set('subject', $sub);
 			
 			$programs = $this->Program->SubjectSubs->find('threaded', array('conditions' => array('SubjectSubs.subid' => $this->data['Programs']['subjects'])));
