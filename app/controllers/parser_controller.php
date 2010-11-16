@@ -22,6 +22,7 @@ class ParserController extends AppController {
 		
 		if($this->RequestHandler->isPost()) {
 			if(!empty($this->data['xml']['tmp_name'])) {
+				//Upload XML via post using a form
 				$inp = fopen($this->data['xml']['tmp_name'], 'r');
 				$content = '';
 				
@@ -35,9 +36,12 @@ class ParserController extends AppController {
 				$xml = new Xml($content);
 				$xmlAsArray = Set::reverse($xml);
 				$xmlAsArray = $xml->toArray();
+				
+				file_put_contents('test-'.$brand.'.txt', $content);
 			
 			}
 			else {
+				//Get XML data via post
 				$xml = new Xml($this->data);
 				$xmlAsArray = Set::reverse($xml);
 				$xmlAsArray = $xml->toArray();
@@ -48,6 +52,7 @@ class ParserController extends AppController {
 			}			
 		}
 		elseif($this->RequestHandler->isXml()) {
+			//Get XML data via post, not sure if this one is used.			
 			$xml = new Xml($this->data);
 			$xmlAsArray = Set::reverse($xml);
 			$xmlAsArray = $xml->toArray();
@@ -70,67 +75,133 @@ class ParserController extends AppController {
 		$this->loadModel('Program');
 		$this->loadModel('DegreeType');
 		$this->loadModel('SubjectSubs');
+		$this->loadModel('ProgramsSubjectsubs');
 		
 		if(!empty($brand)) {
 			$school = $this->School->find('first', array('conditions' => array('ws_id' => $brand)));
 			
-			if(empty($school)) {
-				$school['School']['name'] =  $xml['Brand']['name'];
-				$school['School']['ws_id'] =  $xml['Brand']['id'];
-				$this->School->save($school);
-			}
-			else {
-				$array = array('School' => array('name' => $xml['Brand']['name'],
-											 'ws_id' => $xml['Brand']['id'],
-											 //'logo' => $xml['Brand']['logo'],
-											 //'description' => $xml['Brand']['corpDescription'],
-											 's_desc' => '',
-											 //'punch' => $xml['Brand']['tagline'],
-											 'programs' => '',
-											 'how_it_works' => '',
-											 'financial_aid' => '',
-											 //'accreditation' => $xml['Brand']['accreditation'],
-											 'sched' => -1,
-											 'faculty' => -1,
-											 'tuition' => -1,
-											 'books' => -1,
-											 'f_aid' => -0.99,
-											 'accred' => 'no',
-											 'accred_by' => ''));
-				$this->School->save($array);
+			$sid = $this->_saveSchool($school, $xml);	
+		}
+		else {
+			$school = array();
+			if($xml['Brand']['id']) $school = $this->School->find('first', array('conditions' => array('ws_id' => $xml['Brand']['id'])));
+			
+			$sid = $this->_saveSchool($school, $xml);		
+		}
+		
+		if($xml['Brand']['Programs']['Program']) {
+			foreach($xml['Brand']['Programs']['Program'] as $program) {
+				$p = $this->Program->find('first', array('conditions' => array('ref_id' => $program['id'])));
 				
+				if($program['degree_level']) {
+					$degree = $this->DegreeType->find('first',array('conditions' => array('DegreeType.name' => $program['degree_level']), 'fields' => array('DegreeType.dtid')));
+				}
+				
+				if($program['subSubject']) {
+					$subject = $this->SubjectSubs->find('first', array('conditions' => array('SubjectSubs.ws_id' => $program['subSubject']), 'fields' => array('SubjectSubs.ssid')));
+				}
+				
+				if(empty($p)) {
+					//Create new program
+					$array = array();
+					
+					if($program['name']) $array['Program']['name'] = $program['name'];
+					if($degree['DegreeType']['dtid']) $array['Program']['dtid'] = $degree['DegreeType']['dtid'];
+					if($sid) $array['Program']['sid'] = $sid;
+					$array['Program']['nid'] = 1;
+					if($program['id']) $array['Program']['ref_id'] = $program['id'];
+					if($program['description']) $array['Program']['description'] = $program['description'];
+					
+					$this->Program->create();
+					$this->Program->save($array);
+					
+				}
+				else {
+					//Update a program
+					$this->Program->pid = $p['Program']['pid'];
+					
+					if($program['name']) $p['Program']['name'] = $program['name'];
+					if($degree['DegreeType']['dtid']) $p['Program']['dtid'] = $degree['DegreeType']['dtid'];
+					if($sid) $p['Program']['sid'] = $sid;
+					if($program['id']) $p['Program']['ref_id'] = $program['id'];
+					if($program['description']) $p['Program']['description'] = $program['description'];
+										
+					$this->Program->save($p);
+				}
+				
+				$pss = $this->ProgramsSubjectsubs->find('first', array('conditions' => array('ProgramsSubjectsubs.pid' => $this->Program->id)));
+				
+				if($pss) {
+					$this->ProgramsSubjectsubs->read(null, $pss['ProgramsSubjectsubs']['id']);
+					$this->ProgramsSubjectsubs->set('ssid', $subject['SubjectSubs']['ssid']);
+					$this->ProgramsSubjectsubs->save();
+				}
+				else {
+					$array = array('ProgramsSubjectsubs' => array('pid' => $this->Program->id,
+																  'ssid' => $subject['SubjectSubs']['ssid']));
+					$this->ProgramsSubjectsubs->create();
+					$this->ProgramsSubjectsubs->save($array);
+				}
+			}
+		}
+	}
+	
+	function _saveSchool($school = null, $xml = null) {
+		$this->loadModel('School');
+		$this->loadModel('NetworksSchools');
+		
+		if(!empty($xml)) {
+			if(empty($school)) {
+				//Create new school
+				
+				$array = array();
+
+				if($xml['Brand']['name']) $array['School']['name'] =  $xml['Brand']['name'];
+				if($xml['Brand']['logo']) $array['School']['logo'] =  $xml['Brand']['logo'];
+				if($xml['Brand']['id']) $array['School']['ws_id'] =  $xml['Brand']['id'];
+				if($xml['Brand']['url']) $array['School']['url'] =  $xml['Brand']['url'];
+				if($xml['Brand']['tagline']) $array['School']['punch'] =  $xml['Brand']['tagline'];
+				if($xml['Brand']['tuition_assit']) $array['School']['financial_aid'] =  $xml['Brand']['financial_aid'];
+				if($xml['Brand']['accreditation']): 
+					$array['School']['accred_by'] =  $xml['Brand']['accreditation'];
+					$array['School']['accred'] = 'yes';
+				endif;
+				if($xml['Brand']['campusType']) $array['School']['campus_type'] =  $xml['Brand']['campusType'];
+				if($xml['Brand']['corpDescription']) $array['School']['description'] =  $xml['Brand']['corpDescription'];
+				
+				$this->School->create();
+				$this->School->save($array);
+								
 				$array = array('NetworksSchools' => array('nid' => 1,
 														  'sid' => $this->School->id,
 														  'status' => 1));
+				
+				$this->NetworksSchools->create();
 				$this->NetworksSchools->save($array);
 			}
+			else {
+				//Update school
+				
+				$this->School->sid = $school['School']['sid'];
+				
+				if($xml['Brand']['name']) $school['School']['name'] =  $xml['Brand']['name'];
+				if($xml['Brand']['logo']) $school['School']['logo'] =  $xml['Brand']['logo'];
+				if($xml['Brand']['id']) $school['School']['ws_id'] =  $xml['Brand']['id'];
+				if($xml['Brand']['url']) $school['School']['url'] =  $xml['Brand']['url'];
+				if($xml['Brand']['tagline']) $school['School']['punch'] =  $xml['Brand']['tagline'];
+				if($xml['Brand']['tuition_assit']) $school['School']['financial_aid'] =  $xml['Brand']['financial_aid'];
+				if($xml['Brand']['accreditation']): 
+					$school['School']['accred_by'] =  $xml['Brand']['accreditation'];
+					$school['School']['accred'] = 'yes';
+				endif;
+				if($xml['Brand']['campusType']) $school['School']['campus_type'] =  $xml['Brand']['campusType'];
+				if($xml['Brand']['corpDescription']) $school['School']['description'] =  $xml['Brand']['corpDescription'];
+				
+				$this->School->save($school);
+				
+			}
 			
-			
-		}
-		else {
-			$array = array('School' => array('name' => $xml['Brand']['name'],
-											 'ws_id' => $xml['Brand']['id'],
-											 //'logo' => $xml['Brand']['logo'],
-											 //'description' => $xml['Brand']['corpDescription'],
-											 's_desc' => '',
-											 //'punch' => $xml['Brand']['tagline'],
-											 'programs' => '',
-											 'how_it_works' => '',
-											 'financial_aid' => '',
-											 //'accreditation' => $xml['Brand']['accreditation'],
-											 'sched' => -1,
-											 'faculty' => -1,
-											 'tuition' => -1,
-											 'books' => -1,
-											 'f_aid' => -0.99,
-											 'accred' => 'no',
-											 'accred_by' => ''));
-			$this->School->save($array);
-			
-			$array = array('NetworksSchools' => array('nid' => 1,
-													  'sid' => $this->School->id,
-													  'status' => 1));
-			$this->NetworksSchools->save($array);
+			return $this->School->id;
 		}
 	}
 }
