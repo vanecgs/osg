@@ -39,7 +39,7 @@
 		<div class="school_box_body">
 			<div class="resume">
 				<?php
-					echo $html->image($school['School']['logo'], array('alt' => $school['School']['name'], 'width' => 90, 'height' => 90, 'url' => array('controller' => 'school', 'action' => 'info', $school['School']['sid'], $subject['Subject']['subid'])));
+					echo $html->image($school['School']['logo'], array('alt' => $school['School']['name'], 'width' => 120, 'height' => 60, 'url' => array('controller' => 'school', 'action' => 'info', $school['School']['sid'], $subject['Subject']['subid'])));
 				?>
 				<h4><?php echo $school['School']['punch']?></h4>
 				<ul>
@@ -48,7 +48,7 @@
 							foreach($program['Programs'] as $p):
 								if($p['sid'] == $school['School']['sid']):
 				?>
-					<li><?php echo $p['name']?></li>
+					<li><a><?php echo $p['name']?></a></li>
 				<?php endif; endforeach; endif; endforeach; ?>
 				</ul>
 				<span><?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
@@ -57,7 +57,7 @@
 																$subject['Subject']['subid']));?></span>
 			</div>
 			<div class="extract">
-				<p><?php echo $school['School']['description']?></p>
+				<p><?php if(empty($school['School']['s_desc'])): echo substr($school['School']['description'],0,200).'...'; else: echo $school['School']['s_desc']; endif; ?></p>
 				<?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
 																'action' => 'info', 
 																$school['School']['sid'],
