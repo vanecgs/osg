@@ -93,22 +93,22 @@
 					<!-- Start: File 2 -->
 					<tr>
 						<td>
-							<p>Quarter</p>
+							<p><?php if($school['School']['sched'] == -1): echo 'Unknown'; else: echo $school['School']['sched']; endif;?></p>
 						</td>
 						<td>
-							<p>Unknown</p>
+							<p><?php if(empty($school['School']['faculty'])): echo 'Unknown'; else: echo $school['School']['faculty']; endif;?></p>
 						</td>
 						<td>
-							<p>YES</p>
+							<p><?php echo ucwords($school['School']['accred']) ?></p>
 						</td>
 						<td>
-							<p>$28,380/yr.</p>
+							<p><?php if(empty($school['School']['tuition'])): echo 'Unknown'; else: echo '$'.$school['School']['tuition']; endif;?></p>
 						</td>
 						<td>
-							<p>Unknown</p>
+							<p><?php if(empty($school['School']['books'])): echo 'Unknown'; else: echo '$'.$school['School']['books']; endif;?></p>
 						</td>
 						<td>
-							<p>80%</p>
+							<p><?php if($school['School']['f_aid'] == -0.99): echo 'Unknown'; else: echo $school['School']['f_aid'].'%'; endif;?></p>
 						</td>
 					</tr>
 					<!-- End: File 2 -->
