@@ -43,7 +43,7 @@
 				<?php foreach($dtschools as $dt):?>
 					<?php if($dt['Programs']['sid'] == $school['School']['sid']):?>
 						<?php foreach($dt['SubjectSubs'] as $p): ?>
-							<li><?php echo $p['name']?></li>
+							<li><a><?php echo $p['name']?></a></li>
 						<?php endforeach;?>
 					<?php endif;?>
 				<?php endforeach;?>
@@ -53,7 +53,7 @@
 															$school['School']['sid']));?></span>
 		</div>
 		<div class="extract">
-			<p><?php echo $school['School']['description']?></p>
+			<p><?php if(empty($school['School']['s_desc'])): echo substr($school['School']['description'],0,200).'...'; else: echo $school['School']['s_desc']; endif; ?></p>
 			<?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
 															'action' => 'info', 
 															$school['School']['sid']));?>
