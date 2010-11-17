@@ -48,7 +48,7 @@ class ParserController extends AppController {
 				
 				$string = json_encode($xmlAsArray);
 				
-				file_put_contents('test.txt', $string);
+				file_put_contents('test-'.$brand.'.txt', $string);
 			}			
 		}
 		elseif($this->RequestHandler->isXml()) {
@@ -59,7 +59,7 @@ class ParserController extends AppController {
 			
 			$string = json_encode($xmlAsArray);
 			
-			file_put_contents('test.txt', $string);
+			file_put_contents('test-'.$brand.'.txt', $string);
 	
 		}
 		
