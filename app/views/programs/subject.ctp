@@ -37,7 +37,7 @@
 	<div class="school_box_body">
 		<div class="resume">
 			<?php
-				echo $html->image($school['School']['logo'], array('alt' => $school['School']['name'], 'width' => 120, 'height' => 60, 'url' => array('controller' => 'school', 'action' => 'info', $school['School']['sid'], $subject['Subject']['subid'])));
+				echo $html->image($school['School']['logo'], array('alt' => $school['School']['name'], 'width' => 120, 'height' => 60, 'url' => array('controller' => 'schools', 'action' => 'info', $school['School']['sid'], $subject['Subject']['subid'])));
 			?>
 			<h4><?php echo $school['School']['punch']?></h4>
 			<ul>
