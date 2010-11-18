@@ -205,6 +205,7 @@ class ParserController extends AppController {
 				endif;
 				if($xml['Brand']['campusType']) $array['School']['campus_type'] =  $xml['Brand']['campusType'];
 				if($xml['Brand']['corpDescription']) $array['School']['description'] =  $xml['Brand']['corpDescription'];
+				if($xml['Brand']['parentBrandName']) $array['School']['parent_brand'] = $xml['Brand']['parentBrandName'];
 				
 				$this->School->create();
 				$this->School->save($array);
@@ -233,6 +234,7 @@ class ParserController extends AppController {
 				endif;
 				if($xml['Brand']['campusType']) $school['School']['campus_type'] =  $xml['Brand']['campusType'];
 				if($xml['Brand']['corpDescription']) $school['School']['description'] =  $xml['Brand']['corpDescription'];
+				if($xml['Brand']['parentBrandName']) $school['School']['parent_brand'] = $xml['Brand']['parentBrandName'];
 				
 				$this->School->save($school);
 				
@@ -242,53 +244,5 @@ class ParserController extends AppController {
 		}
 	}
 }
-		//foreach($xml as $school){
-//			//Verificar si la escuela ya existe
-//			$array = array('School' =>array('name' => $school['name'],
-//									 'logo' => $school['logo'],
-//									 'description' => $school['corpDescription'],
-//									 's_desc' => '',
-//									 'punch' => $school['tagline'],
-//									 'programs' => '',
-//									 'how_it_works' => '',
-//									 'financial_aid' => '',
-//									 'accreditation' => $school['accreditation'],
-//									 'sched' => -1,
-//									 'faculty' => -1,
-//									 'tuition' => -1,
-//									 'books' => -1,
-//									 'f_aid' => -0.99,
-//									 'accred' => 'no',
-//									 'accred_by' => ''),
-//					   		'Networks' => array('Networks' => array(1)));
-//			$this->School->saveAll($array);
-//			
-//			//echo "<pre>";
-//			//print_r($school);
-//			//echo "</pre>";
-//			$i = 0;
-//			foreach($school['Programs'] as $program) {
-//				//Si el degree_type no existe, crearlo
-//				//Si el SubjecSubs no existe crearlo
-//				$this->DegreeType->find('first',array('conditions' => array('DegreeType.name' => $program[$i]['degree_level']),
-//																			'fields' => array('DegreeType.dtid')));
-//				
-//				$this->SubjectSubs->find('first', array('conditions' => array('SubjectSubs.name' => $program[$i]['subSubject']),
-//																			  'fields' => array('SubjectSubs.ssid')));
-//
-//				$array = array('Program' => array('name' => $program[$i]['name'],
-//											'dtid' => $this->DegreeType->id,
-//											'sid' => $this->School->id,
-//											'c_type' => 0,
-//											'nid' => 1,
-//											'ref_id' => ''),
-//								'SubjectSubs' => array('SubjectSubs' => array($this->SubjectSubs->id)));
-//				$i++;
-//				$this->Program->saveAll($array);
-//			}
-//			
-//			//print_r($this->School->Networks);
-//			
-//		}		
 	
 ?>
