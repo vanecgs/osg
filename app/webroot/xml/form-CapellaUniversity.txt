@@ -1,0 +1,376 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<formSpec masterBrandName="Capella University" naturalId="1234-1" lpFormVersion="1" buyerSpecDate="2010-04-29" targetDate="2010-04-29" state="ACTIVE" xmlns="http://member.leadpoint.com/integration/brandform-1.0.xsd">
+	<brands>
+		<brand name="Capella University" id="19625"/>
+	</brands>
+	<predicates>
+		<standardPredicate id="address50OrLessPredicate">
+			<regex fieldRef="ADDRESS" pattern="{1`51}"/>
+		</standardPredicate>
+		<standardPredicate id="standardPredicateOne">
+			<notInList fieldRef="EMAIL">
+				<i>1</i>
+				<i>2</i>
+				<i>3</i>
+				<i>4</i>
+				<i>5</i>
+				<i>6</i>
+				<i>7</i>
+				<i>15</i>
+			</notInList>
+		</standardPredicate>
+		<standardPredicate id="170913-Capella University-BID_STATE">
+			<inList fieldRef="BID_STATE">
+				<i>AL</i>
+				<i>IL</i>
+				<i>MT</i>
+				<i>RI</i>
+				<i>AK</i>
+				<i>IN</i>
+				<i>NE</i>
+				<i>SC</i>
+				<i>AZ</i>
+				<i>IA</i>
+				<i>NV</i>
+				<i>SD</i>
+				<i>AR</i>
+				<i>KS</i>
+				<i>NH</i>
+				<i>TN</i>
+				<i>CA</i>
+				<i>KY</i>
+				<i>NJ</i>
+				<i>TX</i>
+				<i>CO</i>
+				<i>LA</i>
+				<i>NM</i>
+				<i>UT</i>
+				<i>CT</i>
+				<i>ME</i>
+				<i>NY</i>
+				<i>VT</i>
+				<i>DE</i>
+				<i>MD</i>
+				<i>NC</i>
+				<i>VA</i>
+				<i>DC</i>
+				<i>MA</i>
+				<i>ND</i>
+				<i>WA</i>
+				<i>FL</i>
+				<i>MI</i>
+				<i>OH</i>
+				<i>WV</i>
+				<i>GA</i>
+				<i>MN</i>
+				<i>OK</i>
+				<i>WI</i>
+				<i>HI</i>
+				<i>MS</i>
+				<i>OR</i>
+				<i>WY</i>
+				<i>ID</i>
+				<i>MO</i>
+				<i>PA</i>
+				<i>US_TERRITORY</i>
+			</inList>
+		</standardPredicate>
+		<standardPredicate id="city50OrLessPredicate">
+			<regex fieldRef="CITY" pattern="{1`50}"/>
+		</standardPredicate>
+		<standardPredicate id="fName50OrLessPredicate">
+			<regex fieldRef="FNAME" pattern="{1`50}"/>
+		</standardPredicate>
+		<standardPredicate id="5DigitZipPredicate">
+			<regex fieldRef="ZIP" pattern="{1`50}"/>
+		</standardPredicate>
+		<standardPredicate id="lName50OrLessPredicate">
+			<regex fieldRef="LNAME" pattern="{1`50}"/>
+		</standardPredicate>
+		<standardPredicate id="standardPredicateTwo">
+			<inList fieldRef="EMAIL">
+				<i>5</i>
+				<i>6</i>
+			</inList>
+		</standardPredicate>
+		<standardPredicate id="179710-Capella University-BID_STATE">
+			<inList fieldRef="BID_STATE">
+				<i>AL</i>
+				<i>IL</i>
+				<i>MT</i>
+				<i>RI</i>
+				<i>AK</i>
+				<i>IN</i>
+				<i>NE</i>
+				<i>SC</i>
+				<i>AZ</i>
+				<i>IA</i>
+				<i>NV</i>
+				<i>SD</i>
+				<i>AR</i>
+				<i>KS</i>
+				<i>NH</i>
+				<i>TN</i>
+				<i>CA</i>
+				<i>KY</i>
+				<i>NJ</i>
+				<i>TX</i>
+				<i>CO</i>
+				<i>LA</i>
+				<i>NM</i>
+				<i>UT</i>
+				<i>CT</i>
+				<i>ME</i>
+				<i>NY</i>
+				<i>VT</i>
+				<i>DE</i>
+				<i>MD</i>
+				<i>NC</i>
+				<i>VA</i>
+				<i>DC</i>
+				<i>MA</i>
+				<i>ND</i>
+				<i>WA</i>
+				<i>FL</i>
+				<i>MI</i>
+				<i>OH</i>
+				<i>WV</i>
+				<i>GA</i>
+				<i>MN</i>
+				<i>OK</i>
+				<i>WI</i>
+				<i>HI</i>
+				<i>MS</i>
+				<i>OR</i>
+				<i>WY</i>
+				<i>ID</i>
+				<i>MO</i>
+				<i>PA</i>
+				<i>US_TERRITORY</i>
+			</inList>
+		</standardPredicate>
+	</predicates>
+	<formPages>
+		<formPage formPageName="1" number="1">
+			<section name="Section1" description="" order="0">
+				<field name="FNAME" label="First Name:" buyerLabel="FirstName" type="TEXT" isRequiredInForm="true" order="0" multiSelect="false">
+					<globalConditions>
+						<condition id="fName50OrLess">
+							<standardPredicate ref="fName50OrLessPredicate"/>
+						</condition>
+					</globalConditions>
+					<leadValidation type="name" fieldRequired="true"/>
+				</field>
+				<field name="LNAME" label="Last Name:" buyerLabel="LastName" type="TEXT" isRequiredInForm="true" order="1" multiSelect="false">
+					<globalConditions>
+						<condition id="lName50OrLess">
+							<standardPredicate ref="lName50OrLessPredicate"/>
+						</condition>
+					</globalConditions>
+					<leadValidation type="name" fieldRequired="true"/>
+				</field>
+				<field name="PRI_PHONE" label="Daytime Phone:" buyerLabel="DaytimePhone" type="TEXT" isRequiredInForm="true" order="2" multiSelect="false">
+					<showIfConditions>
+						<condition id="lName50OrLess">
+							<standardPredicate ref="lName50OrLessPredicate"/>
+						</condition>
+					</showIfConditions>
+					<leadValidation type="name" fieldRequired="true"/>
+				</field>
+				<field name="SEC_PHONE" label="Evening Phone:" buyerLabel="EveningPhone" type="TEXT" isRequiredInForm="true" order="3" multiSelect="false">
+					<leadValidation type="name" fieldRequired="false"/>
+				</field>
+				<field name="EMAIL" label="Email:" buyerLabel="Email" type="TEXT" isRequiredInForm="true" order="4" multiSelect="false">
+					<globalConditions>
+						<condition id="email50OrLess">
+							<andPredicate>
+								<standardPredicate ref="standardPredicateOne"/>
+								<standardPredicate ref="standardPredicateTwo"/>
+							</andPredicate>
+						</condition>
+					</globalConditions>
+					<leadValidation type="name" fieldRequired="true"/>
+				</field>
+				<field name="ADDRESS" label="Address:" buyerLabel="Address" type="TEXT" isRequiredInForm="true" order="5" multiSelect="false">
+					<globalConditions>
+						<condition id="address50OrLess">
+							<standardPredicate ref="address50OrLessPredicate"/>
+						</condition>
+					</globalConditions>
+					<leadValidation type="name" fieldRequired="true"/>
+				</field>
+				<field name="CITY" label="City:" buyerLabel="City" type="TEXT" isRequiredInForm="true" order="6" multiSelect="false">
+					<globalConditions>
+						<condition id="city50OrLess">
+							<standardPredicate ref="city50OrLessPredicate"/>
+						</condition>
+					</globalConditions>
+					<leadValidation type="name" fieldRequired="true"/>
+				</field>
+				<field name="BID_STATE" label="State:" buyerLabel="State" type="SELECT" isRequiredInForm="true" order="7" multiSelect="true">
+					<options>
+						<option name="Alabama" value="Alabama" naturalId="BID_STATE-Alabama-Alabama"/>
+						<option name="Alaska" value="Alaska" naturalId="BID_STATE-Alaska-Alaska"/>
+						<option name="Arizona" value="Arizona" naturalId="BID_STATE-Arizona-Arizona"/>
+						<option name="Arkansas" value="Arkansas" naturalId="BID_STATE-Arkansas-Arkansas"/>
+						<option name="California" value="California" naturalId="BID_STATE-California-California"/>
+						<option name="Colorado" value="Colorado" naturalId="BID_STATE-Colorado-Colorado"/>
+						<option name="Connecticut" value="Connecticut" naturalId="BID_STATE-Connecticut-Connecticut"/>
+						<option name="Delaware" value="Delaware" naturalId="BID_STATE-Delaware-Delaware"/>
+						<option name="District of Columbia" value="District of Columbia" naturalId="BID_STATE-District of Columbia-District of Columbia"/>
+						<option name="Florida" value="Florida" naturalId="BID_STATE-Florida-Florida"/>
+						<option name="Georgia" value="Georgia" naturalId="BID_STATE-Georgia-Georgia"/>
+						<option name="Hawaii" value="Hawaii" naturalId="BID_STATE-Hawaii-Hawaii"/>
+						<option name="Idaho" value="Idaho" naturalId="BID_STATE-Idaho-Idaho"/>
+						<option name="Illinois" value="Illinois" naturalId="BID_STATE-Illinois-Illinois"/>
+						<option name="Indiana" value="Indiana" naturalId="BID_STATE-Indiana-Indiana"/>
+						<option name="Iowa" value="Iowa" naturalId="BID_STATE-Iowa-Iowa"/>
+						<option name="Kansas" value="Kansas" naturalId="BID_STATE-Kansas-Kansas"/>
+						<option name="Kentucky" value="Kentucky" naturalId="BID_STATE-Kentucky-Kentucky"/>
+						<option name="Louisiana" value="Louisiana" naturalId="BID_STATE-Louisiana-Louisiana"/>
+						<option name="Maine" value="Maine" naturalId="BID_STATE-Maine-Maine"/>
+						<option name="Maryland" value="Maryland" naturalId="BID_STATE-Maryland-Maryland"/>
+						<option name="Massachusetts" value="Massachusetts" naturalId="BID_STATE-Massachusetts-Massachusetts"/>
+						<option name="Michigan" value="Michigan" naturalId="BID_STATE-Michigan-Michigan"/>
+						<option name="Minnesota" value="Minnesota" naturalId="BID_STATE-Minnesota-Minnesota"/>
+						<option name="Mississippi" value="Mississippi" naturalId="BID_STATE-Mississippi-Mississippi"/>
+						<option name="Missouri" value="Missouri" naturalId="BID_STATE-Missouri-Missouri"/>
+						<option name="Montana" value="Montana" naturalId="BID_STATE-Montana-Montana"/>
+						<option name="Nebraska" value="Nebraska" naturalId="BID_STATE-Nebraska-Nebraska"/>
+						<option name="Nevada" value="Nevada" naturalId="BID_STATE-Nevada-Nevada"/>
+						<option name="New Hampshire" value="New Hampshire" naturalId="BID_STATE-New Hampshire-New Hampshire"/>
+						<option name="New Jersey" value="New Jersey" naturalId="BID_STATE-New Jersey-New Jersey"/>
+						<option name="New Mexico" value="New Mexico" naturalId="BID_STATE-New Mexico-New Mexico"/>
+						<option name="New York" value="New York" naturalId="BID_STATE-New York-New York"/>
+						<option name="North Carolina" value="North Carolina" naturalId="BID_STATE-North Carolina-North Carolina"/>
+						<option name="North Dakota" value="North Dakota" naturalId="BID_STATE-North Dakota-North Dakota"/>
+						<option name="Ohio" value="Ohio" naturalId="BID_STATE-Ohio-Ohio"/>
+						<option name="Oklahoma" value="Oklahoma" naturalId="BID_STATE-Oklahoma-Oklahoma"/>
+						<option name="Oregon" value="Oregon" naturalId="BID_STATE-Oregon-Oregon"/>
+						<option name="Pennsylvania" value="Pennsylvania" naturalId="BID_STATE-Pennsylvania-Pennsylvania"/>
+						<option name="Rhode Island" value="Rhode Island" naturalId="BID_STATE-Rhode Island-Rhode Island"/>
+						<option name="South Carolina" value="South Carolina" naturalId="BID_STATE-South Carolina-South Carolina"/>
+						<option name="South Dakota" value="South Dakota" naturalId="BID_STATE-South Dakota-South Dakota"/>
+						<option name="Tennessee" value="Tennessee" naturalId="BID_STATE-Tennessee-Tennessee"/>
+						<option name="Texas" value="Texas" naturalId="BID_STATE-Texas-Texas"/>
+						<option name="Utah" value="Utah" naturalId="BID_STATE-Utah-Utah"/>
+						<option name="Vermont" value="Vermont" naturalId="BID_STATE-Vermont-Vermont"/>
+						<option name="Virginia" value="Virginia" naturalId="BID_STATE-Virginia-Virginia"/>
+						<option name="Washington" value="Washington" naturalId="BID_STATE-Washington-Washington"/>
+						<option name="West Virginia" value="West Virginia" naturalId="BID_STATE-West Virginia-West Virginia"/>
+						<option name="Wisconsin" value="Wisconsin" naturalId="BID_STATE-Wisconsin-Wisconsin"/>
+						<option name="Wyoming" value="Wyoming" naturalId="BID_STATE-Wyoming-Wyoming"/>
+					</options>
+					<leadValidation type="name" fieldRequired="true"/>
+				</field>
+				<field name="ZIP" label="Please enter your zip code so we can search for programs near you:" buyerLabel="ZIP2038" type="TEXT" isRequiredInForm="true" order="8" multiSelect="false">
+					<globalConditions>
+						<condition id="5DigitZip">
+							<standardPredicate ref="5DigitZipPredicate"/>
+						</condition>
+					</globalConditions>
+					<leadValidation type="name" fieldRequired="true"/>
+				</field>
+			</section>
+			<section name="Section2" description="" order="1">
+				<field name="WORK_XP" label="Work Experience" buyerLabel="WorkExp" type="HIDDEN" isRequiredInForm="true" order="0" multiSelect="false">
+					<leadValidation type="name" fieldRequired="true"/>
+				</field>
+				<field name="HS_GRAD_YEAR" label="What year did you graduate from High School or complete your GED?" buyerLabel="YearHSGED" type="HIDDEN" isRequiredInForm="true" order="1" multiSelect="false">
+					<options>
+						<option name="1961" value="1961" naturalId="HS_GRAD_YEAR-1961-1961"/>
+						<option name="1962" value="1962" naturalId="HS_GRAD_YEAR-1962-1962"/>
+						<option name="1963" value="1963" naturalId="HS_GRAD_YEAR-1963-1963"/>
+						<option name="1964" value="1964" naturalId="HS_GRAD_YEAR-1964-1964"/>
+						<option name="1965" value="1965" naturalId="HS_GRAD_YEAR-1965-1965"/>
+						<option name="1966" value="1966" naturalId="HS_GRAD_YEAR-1966-1966"/>
+						<option name="1967" value="1967" naturalId="HS_GRAD_YEAR-1967-1967"/>
+						<option name="1968" value="1968" naturalId="HS_GRAD_YEAR-1968-1968"/>
+						<option name="1969" value="1969" naturalId="HS_GRAD_YEAR-1969-1969"/>
+						<option name="1970" value="1970" naturalId="HS_GRAD_YEAR-1970-1970"/>
+						<option name="1971" value="1971" naturalId="HS_GRAD_YEAR-1971-1971"/>
+						<option name="1972" value="1972" naturalId="HS_GRAD_YEAR-1972-1972"/>
+						<option name="1973" value="1973" naturalId="HS_GRAD_YEAR-1973-1973"/>
+						<option name="1974" value="1974" naturalId="HS_GRAD_YEAR-1974-1974"/>
+						<option name="1975" value="1975" naturalId="HS_GRAD_YEAR-1975-1975"/>
+						<option name="1976" value="1976" naturalId="HS_GRAD_YEAR-1976-1976"/>
+						<option name="1977" value="1977" naturalId="HS_GRAD_YEAR-1977-1977"/>
+						<option name="1978" value="1978" naturalId="HS_GRAD_YEAR-1978-1978"/>
+						<option name="1979" value="1979" naturalId="HS_GRAD_YEAR-1979-1979"/>
+						<option name="1980" value="1980" naturalId="HS_GRAD_YEAR-1980-1980"/>
+						<option name="1981" value="1981" naturalId="HS_GRAD_YEAR-1981-1981"/>
+						<option name="1982" value="1982" naturalId="HS_GRAD_YEAR-1982-1982"/>
+						<option name="1983" value="1983" naturalId="HS_GRAD_YEAR-1983-1983"/>
+						<option name="1984" value="1984" naturalId="HS_GRAD_YEAR-1984-1984"/>
+						<option name="1985" value="1985" naturalId="HS_GRAD_YEAR-1985-1985"/>
+						<option name="1986" value="1986" naturalId="HS_GRAD_YEAR-1986-1986"/>
+						<option name="1987" value="1987" naturalId="HS_GRAD_YEAR-1987-1987"/>
+						<option name="1988" value="1988" naturalId="HS_GRAD_YEAR-1988-1988"/>
+						<option name="1989" value="1989" naturalId="HS_GRAD_YEAR-1989-1989"/>
+						<option name="1990" value="1990" naturalId="HS_GRAD_YEAR-1990-1990"/>
+						<option name="1991" value="1991" naturalId="HS_GRAD_YEAR-1991-1991"/>
+						<option name="1992" value="1992" naturalId="HS_GRAD_YEAR-1992-1992"/>
+						<option name="1993" value="1993" naturalId="HS_GRAD_YEAR-1993-1993"/>
+						<option name="1994" value="1994" naturalId="HS_GRAD_YEAR-1994-1994"/>
+						<option name="1995" value="1995" naturalId="HS_GRAD_YEAR-1995-1995"/>
+						<option name="1996" value="1996" naturalId="HS_GRAD_YEAR-1996-1996"/>
+						<option name="1997" value="1997" naturalId="HS_GRAD_YEAR-1997-1997"/>
+						<option name="1998" value="1998" naturalId="HS_GRAD_YEAR-1998-1998"/>
+						<option name="1999" value="1999" naturalId="HS_GRAD_YEAR-1999-1999"/>
+						<option name="2000" value="2000" naturalId="HS_GRAD_YEAR-2000-2000"/>
+						<option name="2001" value="2001" naturalId="HS_GRAD_YEAR-2001-2001"/>
+						<option name="2002" value="2002" naturalId="HS_GRAD_YEAR-2002-2002"/>
+						<option name="2003" value="2003" naturalId="HS_GRAD_YEAR-2003-2003"/>
+						<option name="2004" value="2004" naturalId="HS_GRAD_YEAR-2004-2004"/>
+						<option name="2005" value="2005" naturalId="HS_GRAD_YEAR-2005-2005"/>
+						<option name="2006" value="2006" naturalId="HS_GRAD_YEAR-2006-2006"/>
+						<option name="2007" value="2007" naturalId="HS_GRAD_YEAR-2007-2007"/>
+						<option name="2008" value="2008" naturalId="HS_GRAD_YEAR-2008-2008"/>
+						<option name="2009" value="2009" naturalId="HS_GRAD_YEAR-2009-2009"/>
+						<option name="2010" value="2010" naturalId="HS_GRAD_YEAR-2010-2010"/>
+					</options>
+					<leadValidation type="name" fieldRequired="true"/>
+				</field>
+				<field name="PROGRAM_TYPE" label="Program Information" buyerLabel="Program" type="TEXT" isRequiredInForm="true" order="2" multiSelect="true">
+					<programs>
+						<program lpProgramName="Diploma - Medical Assisting" buyerProgramName="Diploma - Medical Assisting" sellerDisplayName="" description="Diploma - Medical Assisting" programSubmitValue="22659$Capella University*Diploma - Medical Assisting" naturalId="1183875726"/>
+						<program lpProgramName="Diploma - Cosmetology" buyerProgramName="Diploma - Cosmetology" sellerDisplayName="" description="Diploma - Cosmetology" programSubmitValue="22659$Capella University*Diploma - Cosmetology" naturalId="1342802099"/>
+						<program lpProgramName="Diploma - System Engineering" buyerProgramName="Diploma - System Engineering" sellerDisplayName="" description="Diploma in System Engineering" programSubmitValue="22659$Capella University*Diploma - System Engineering" naturalId="-1794229080"/>
+						<program lpProgramName="Diploma - Culinary" buyerProgramName="Diploma - Culinary" sellerDisplayName="" description="Diploma - Culinary" programSubmitValue="22659$Capella University*Diploma - Culinary" naturalId="297148559"/>
+						<program lpProgramName="Diploma - Electronic Systems Technician (EST)" buyerProgramName="Diploma - Electronic Systems Technician (EST)" sellerDisplayName="" description="Diploma - Electronic Systems Technician (EST)" programSubmitValue="22659$Capella University*Diploma - Electronic Systems Technician (EST)" naturalId="-398932301"/>
+						<program lpProgramName="Diploma - Drafting" buyerProgramName="Diploma - Drafting" sellerDisplayName="" description="Diploma - Drafting" programSubmitValue="22659$Capella University*Diploma - Drafting" naturalId="-940057081"/>
+						<program lpProgramName="Diploma - Heating Ventilation and Air Conditioning (HVAC)" buyerProgramName="Diploma - Heating Ventilation and Air Conditioning (HVAC)" sellerDisplayName="" description="Diploma - Heating Ventilation and Air Conditioning (HVAC)" programSubmitValue="22659$Capella University*Diploma - Heating Ventilation and Air Conditioning (HVAC)" naturalId="-2004838114"/>
+						<program lpProgramName="Associates - Business Administration" buyerProgramName="Associates - Business Administration" sellerDisplayName="" description="Associates - Business Administration" programSubmitValue="22659$Capella University*Associates - Business Administration" naturalId="-1863200331"/>
+						<program lpProgramName="Diploma - Dental" buyerProgramName="Diploma - Dental" sellerDisplayName="" description="Diploma - Dental" programSubmitValue="22659$Capella University*Diploma - Dental" naturalId="1046633496"/>
+						<program lpProgramName="Diploma - Automotive" buyerProgramName="Diploma - Automotive" sellerDisplayName="" description="Diploma - Automotive" programSubmitValue="22659$Capella University*Diploma - Automotive" naturalId="261363227"/>
+					</programs>
+					<leadValidation type="targeted-string" fieldRequired="true"/>
+				</field>
+			</section>
+			<section name="Section3" description="" order="2">
+				<field name="AGE" label="Age" buyerLabel="Age" type="TEXT" isRequiredInForm="true" order="0" multiSelect="false">
+					<leadValidation type="string" fieldRequired="true"/>
+				</field>
+			</section>
+		</formPage>
+	</formPages>
+	<geoTargetingData>
+		< location="Capella University" brandRef="19625">
+<programs>
+				<program programRef="1183875726" />
+				<program programRef="1342802099" />
+				<program programRef="-1794229080" />
+				<program programRef="297148559" />
+				<program programRef="-398932301" />
+				<program programRef="-940057081" />
+				<program programRef="-2004838114" />
+				<program programRef="1046633496" />
+				<program programRef="261363227" />
+			</programs>
+				<andPredicate>
+					<standardPredicate ref="179710-Capella University-BID_STATE"/>
+					<standardPredicate ref="170913-Capella University-BID_STATE"/>
+				</andPredicate>
+			</location>
+	</geoTargetingData>
+</formSpec>

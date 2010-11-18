@@ -37,7 +37,20 @@ class ParserController extends AppController {
 				$xmlAsArray = Set::reverse($xml);
 				$xmlAsArray = $xml->toArray();
 				
-				file_put_contents('test-'.$brand.'.txt', $content);
+				if($xmlAsArray['FormSpec']) {
+					$str = preg_replace('/\s+/', '', $xmlAsArray['FormSpec']['masterBrandName']);
+					file_put_contents('xml/form-'.$str.'.txt', $content);
+				}
+				elseif($xmlAsArray['Brand']) {
+					file_put_contents('xml/brand-'.$brand.'.txt', $content);
+				}
+				elseif($xmlAsArray['Buyer']) {
+					file_put_contents('xml/buyer-'.$xmlAsArray['Buyer']['id'].'.txt', $content);
+				}
+				else {
+					file_put_contents('xml/osg-'.$brand.'.txt', $content);
+				}
+				
 			
 			}
 			else {
@@ -48,7 +61,19 @@ class ParserController extends AppController {
 				
 				$string = json_encode($xmlAsArray);
 				
-				file_put_contents('test-'.$brand.'.txt', $string);
+				if($xmlAsArray['FormSpec']) {
+					$str = preg_replace('/\s+/', '', $xmlAsArray['FormSpec']['masterBrandName']);
+					file_put_contents('xml/form-'.$str.'.txt', $content);
+				}
+				elseif($xmlAsArray['Brand']) {
+					file_put_contents('xml/brand-'.$brand.'.txt', $content);
+				}
+				elseif($xmlAsArray['Buyer']) {
+					file_put_contents('xml/buyer-'.$xmlAsArray['Buyer']['id'].'.txt', $content);
+				}
+				else {
+					file_put_contents('xml/osg-'.$brand.'.txt', $content);
+				}
 			}			
 		}
 		elseif($this->RequestHandler->isXml()) {
@@ -59,13 +84,25 @@ class ParserController extends AppController {
 			
 			$string = json_encode($xmlAsArray);
 			
-			file_put_contents('test-'.$brand.'.txt', $string);
+			if($xmlAsArray['FormSpec']) {
+				$str = preg_replace('/\s+/', '', $xmlAsArray['FormSpec']['masterBrandName']);
+				file_put_contents('xml/form-'.$str.'.txt', $content);
+			}
+			elseif($xmlAsArray['Brand']) {
+				file_put_contents('xml/brand-'.$brand.'.txt', $content);
+			}
+			elseif($xmlAsArray['Buyer']) {
+				file_put_contents('xml/buyer-'.$xmlAsArray['Buyer']['id'].'.txt', $content);
+			}
+			else {
+				file_put_contents('xml/osg-'.$brand.'.txt', $content);
+			}
 	
 		}
 		
 		$this->set('xml', $xmlAsArray);
 		
-		if(!empty($xmlAsArray)) $this->_saveXml($xmlAsArray, $brand);
+		if(!empty($xmlAsArray) && !empty($xmlAsArray['Brand'])) $this->_saveXml($xmlAsArray, $brand);
 
 	}
 	
