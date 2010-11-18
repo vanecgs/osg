@@ -75,6 +75,22 @@ class SchoolsController extends AppController {
 		$this->set('programs', $programs);
 		
 		if(!empty($subid)) $this->set('subject', $subid);
+		
+		if($school['School']['parent_brand']) {
+			$str = preg_replace('/\s+/', '', $school['School']['parent_brand']);
+			$inp = fopen('xml/form-'.$str.'.txt', 'r');
+			$content = '';
+			
+			while (!feof($inp)) {
+				$content .= fread($inp, 8192);
+			}
+			
+			fclose($inp);
+			
+			$form = json_decode($content, true);
+			
+			//echo $form['FormSpec']['xmlns'];
+		}
 				
 		//Degrees
 		$this->loadModel('DegreeType');
