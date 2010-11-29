@@ -5,6 +5,10 @@ class ContentsController extends AppController {
 	var $scaffold = 'admin';
 
 	function index() {
+		//Home content
+		$content = $this->Content->find('first', array('conditions' => array('ctid' => 1)));
+		$this->set('content', $content);
+		
 		//Subject Menu
 		$this->loadModel('Subject');
 		$subjects = $this->Subject->find('threaded');
