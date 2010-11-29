@@ -13,9 +13,11 @@
  	echo $html->css('print.css');
  	echo $html->css('reset.css');
 	echo $html->css('style.css');
+	echo $html->css('jquery-ui.css');
 	
 	if(!empty($javascript)):
 		echo $javascript->link('jquery.js');
+		echo $javascript->link('jquery-ui.js');
 		echo $javascript->link('custom.js');
 	endif;
 	Configure::load('osg');

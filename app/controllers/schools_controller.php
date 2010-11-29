@@ -3,6 +3,11 @@ class SchoolsController extends AppController {
 	var $name = 'Schools';
 	var $scaffold = 'admin';
 	var $helpers = array('Javascript');
+	var $components = array('RequestHandler');
+//	
+//	function beforeFilter() {
+//        $this->Auth->allow('index','info');
+//	}
 	
 	function index() {
 		$this->layout = 'result';
@@ -89,7 +94,8 @@ class SchoolsController extends AppController {
 			
 			$form = json_decode($content, true);
 			
-			//echo $form['FormSpec']['xmlns'];
+			$this->set('dform', $form);
+			
 		}
 				
 		//Degrees
@@ -102,6 +108,58 @@ class SchoolsController extends AppController {
 		$this->_setSubjectForm();		
 		$this->_setDegreeTypeMenu();
 		$this->_setDegreeTypeForm();
+	}
+	
+	function lead() {
+		$data = array(//'LEAD_ID' => $this->params['form']['lead_id'],
+					  'AID' => 13944,
+					  'ZIP' => $this->params['form']['zip'],
+					  'BID_STATE' => $this->params['form']['bid_state'],
+					  'PRI_PHONE' => $this->params['form']['pri_phone'],
+					  //'SID' => $this->params['form']['sid'],
+					  //'CID' => $this->params['form']['cid'],
+					  //'MID' => $this->params['form']['mid'],
+					  //'TID' => $this->params['form']['tid'],
+					  'PROGRAM_TYPE' => $this->params['form']['program_type'],
+					  'IP_ADDRESS' => $this->RequestHandler->getClientIP(),
+					  'SEC_PHONE' => $this->params['form']['sec_phone'],
+					  //'ONLINE_PHYSICAL' => $this->params['form']['online_physical'],
+					  'CAPTURE_TIME' => $this->params['form']['capture_time'],
+					  'PRODUCT' => 'PP_EDU_US',
+					  'FNAME' => $this->params['form']['fname'],
+					  'ADDRESS' => $this->params['form']['address'],
+					  'LNAME' => $this->params['form']['lname'],
+					  'HS_GRAD_YEAR' => $this->params['form']['hs_grad_year'],
+					  'COUNTRY_RESIDENCE' => $this->params['form']['country_residence'],
+					  //'WORK_XP' => $this->params['form']['work_xp'],
+					  'HIGHEST_LEVEL' => $this->params['form']['highest_level'],
+					  'CITY' => $this->params['form']['city'],
+					  //'CURRENT_AGE' => $this->params['form']['current_age'],
+					  'EMAIL' => $this->params['form']['email']
+		);
+		App::import('Core', 'Xml');
+	
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://www.leadpointdelivery.com/13944/direct.ilp");
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+	    $output = curl_exec($ch);
+	    curl_close($ch);   
+		
+		$xml = new Xml($output);
+		$xmlAsArray = Set::reverse($xml);
+		$xmlAsArray = $xml->toArray();
+		
+		$this->set('response', $xmlAsArray);
+
+		if($xmlAsArray['Response']['sm'] == 'OK') {
+			$this->loadModel('NetworksSchools');
+			$ns = $this->NetworksSchools->find('first', array('conditions' => array('sid' => $this->params['form']['school_id'])));
+			$ns['NetworksSchools']['cap'] = $ns['NetworksSchools']['cap'] - 1;
+			$this->NetworksSchools->save($ns);
+		}
+		
+		$this->layout = 'ajax';
 	}
 }
 ?>

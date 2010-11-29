@@ -3,7 +3,7 @@ class UsersController extends AppController {
 	var $name = 'Users';
 	var $scaffold = 'admin';
 	
-	var $components = array('Auth');
+	var $components = array('Auth','RequestHandler');
 
     function beforeFilter() {
 		
@@ -16,10 +16,13 @@ class UsersController extends AppController {
 		
 		$this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'view');
 		
-		$this->Auth->allow('add');
+		$this->Auth->allow('add','isAuth');
     }
 
-	function login() {
+	function login($id = null) {
+		if($id) {
+			$this->redirect(array('controller' => 'schools', 'action' => 'info', $id));
+		}
     }
 
     function logout() {
@@ -49,6 +52,10 @@ class UsersController extends AppController {
 				$this->redirect(array('action' => 'view'));
 			}
 		}
+	}
+	
+	function isAuth() {
+		$this->layout = 'ajax';
 	}
 
 }

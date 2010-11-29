@@ -33,12 +33,16 @@
 
 
 <!-- Start: Column B -->
+
+<div id="dialog" title="Basic dialog">
+	<div id="dialog-content"><p>Login or register to load your personal information or close the window and manually fill all the fields in the form.</p></div>
+</div>
+
  
 <div class="col_b">
-	<form action="" method="post">
 		<?php
 			if(!empty($school['School']['image'])):
-				echo $html->image($school['School']['image'], array('alt' => $school['School']['name'], 'class' => 'logo', 'width' => 311, 'height' => 80, 'align' => 'middle' ,'url' => $school['School']['url']));
+				echo $html->image($school['School']['image'], array('alt' => $school['School']['name'], 'class' => 'logo', 'width' => 311, 'height' => 80, 'align' => 'middle' ,'url' => $school['School']['url']));			
 			endif;
 		?>
 				
@@ -46,31 +50,40 @@
 		
 		<p>Please fill out the form below to get more information about the programs offered by University of Phoenix - Business.</p>
 		
-		<label>Label</label>
-		<input type="text" name="" />
-		<label>Label</label>
-		<input type="hidden" name="" />
-			<select name="program"> 
-				<option value=""> - Select - </option> 
-				<option value="">Option 1</option> 
-				<option value="">Option 2</option>  
- 				<option value="">Option 3</option>
- 				<option value="">etc.</option> 
- 			</select> 
-		<label>Label</label>
-		<input type="hidden" name="" />
-			<select name="degree">
-				<option value=""> - Select - </option> 
-				<option value="">Option 1</option> 
-				<option value="">Option 2</option>  
- 				<option value="">Option 3</option>
- 				<option value="">etc.</option> 
- 			</select>
- 		<label>Label</label>
-		<input type="text" name="" />
- 		<label>Label</label>
- 		<textarea cols="60">Message here</textarea>
- 		<input type="submit" name="Submit" value="Request information &raquo;" />
+		
+		<?php 
+			echo $this->Form->create(null, array('default' => false)); 
+			
+			foreach($dform['FormSpec']['FormPages']['FormPage']['Section']['Field'] as $field):
+			
+				echo '<label>'.$field['label'].'</label>';
+				
+				switch($field['type']) {
+					case 'TEXT':
+						echo '<input type="text" id="'.$field['name'].'" name="'.$field['name'].'">';
+						break;
+					case 'SELECT':
+						//pr($field);
+						echo '<select style="width:250px" id="'.$field['name'].'" name="'.$field['name'].'">';
+						
+						if($field['Options']['Option']):
+							foreach($field['Options']['Option'] as $option):
+								echo '<option value="'.$option['value'].'">'.$option['name'].'</option>';
+							endforeach;
+						elseif($field['Programs']['Program']):
+							foreach($field['Programs']['Program'] as $option):
+								echo '<option value="'.$option['programSubmitValue'].'">'.$option['lpProgramName'].'</option>';
+							endforeach;
+						endif;
+						
+						echo '</select>';
+						break;
+				}	
+			
+			endforeach;
+			echo '<input type="hidden" id="SCHOOL_ID" name="SCHOOL_ID" value="'.$school['School']['sid'].'">';
+			echo $this->Form->end(array('label' => 'Request Information','value' => 'Request Information', 'id' => 'post-lead','div' => array('class' => 'button'))); 
+		?>
 	</form> 
 
 </div>
