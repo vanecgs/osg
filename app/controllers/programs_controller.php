@@ -33,7 +33,8 @@ class ProgramsController extends AppController {
 		$this->_setSubjectMenu();
 		$this->_setSubjectForm();
 		$this->_setDegreeTypeMenu();		
-		$this->_setDegreeTypeForm();		
+		$this->_setDegreeTypeForm();	
+		$this->_setResourceMenu();
 	}
 	
 	function degree($degree) {
@@ -57,7 +58,8 @@ class ProgramsController extends AppController {
 		$this->_setSubjectMenu();
 		$this->_setSubjectForm();		
 		$this->_setDegreeTypeMenu();
-		$this->_setDegreeTypeForm();		
+		$this->_setDegreeTypeForm();
+		$this->_setResourceMenu();
 	}
 	
 	function subjectsub($subjectsub) {
@@ -117,7 +119,8 @@ class ProgramsController extends AppController {
 		$this->_setSubjectMenu();
 		$this->_setSubjectForm();		
 		$this->_setDegreeTypeMenu();
-		$this->_setDegreeTypeForm();		
+		$this->_setDegreeTypeForm();
+		$this->_setResourceMenu();
 	}
 	
 	function search() {
@@ -167,6 +170,7 @@ class ProgramsController extends AppController {
 			$this->_setSubjectForm();			
 			$this->_setDegreeTypeMenu();
 			$this->_setDegreeTypeForm();
+			$this->_setResourceMenu();
 		}
 	}
 	
