@@ -33,6 +33,7 @@ class SchoolsController extends AppController {
 		$this->_setSubjectForm();		
 		$this->_setDegreeTypeMenu();
 		$this->_setDegreeTypeForm();
+		$this->_setResourceMenu();
 	}
 	
 	function info($sid, $subid = null) {
@@ -108,11 +109,14 @@ class SchoolsController extends AppController {
 		$this->_setSubjectForm();		
 		$this->_setDegreeTypeMenu();
 		$this->_setDegreeTypeForm();
+		$this->_setResourceMenu();
 	}
 	
 	function lead() {
+		App::import('Core', 'Xml');
+		
 		$data = array(//'LEAD_ID' => $this->params['form']['lead_id'],
-					  'AID' => 13944,
+					  'AID' => 1923,
 					  'ZIP' => $this->params['form']['zip'],
 					  'BID_STATE' => $this->params['form']['bid_state'],
 					  'PRI_PHONE' => $this->params['form']['pri_phone'],
@@ -121,10 +125,10 @@ class SchoolsController extends AppController {
 					  //'MID' => $this->params['form']['mid'],
 					  //'TID' => $this->params['form']['tid'],
 					  'PROGRAM_TYPE' => $this->params['form']['program_type'],
-					  'IP_ADDRESS' => $this->RequestHandler->getClientIP(),
+					  'IP_ADDRESS' => getenv('REMOTE_ADDR'),
 					  'SEC_PHONE' => $this->params['form']['sec_phone'],
 					  //'ONLINE_PHYSICAL' => $this->params['form']['online_physical'],
-					  'CAPTURE_TIME' => $this->params['form']['capture_time'],
+					  'CAPTURE_TIME' => date('d/m/Y G:i', time()),
 					  'PRODUCT' => 'PP_EDU_US',
 					  'FNAME' => $this->params['form']['fname'],
 					  'ADDRESS' => $this->params['form']['address'],
@@ -135,13 +139,17 @@ class SchoolsController extends AppController {
 					  'HIGHEST_LEVEL' => $this->params['form']['highest_level'],
 					  'CITY' => $this->params['form']['city'],
 					  //'CURRENT_AGE' => $this->params['form']['current_age'],
-					  'EMAIL' => $this->params['form']['email']
+					  'EMAIL' => $this->params['form']['email'],
+					  'MASTER_BRAND' => $this->params['form']['master_brand']
 		);
-		App::import('Core', 'Xml');
-	
+		
+		//$url = "https://www.leadpointdelivery.com/13944/direct.ilp?AID=".urlencode($data['AID'])."&ZIP=".urlencode($data['ZIP'])."&BID_STATE=".urlencode($data['BID_STATE'])."&PRI_PHONE=".urlencode($data['PRI_PHONE'])."&PROGRAM_TYPE=".urlencode($data['PROGRAM_TYPE'])."&IP_ADDRESS=".urlencode($data['IP_ADDRESS'])."&SEC_PHONE=".urlencode($data['SEC_PHONE'])."&CAPTURE_TIME=".urlencode($data['CAPTURE_TIME'])."&PRODUCT=".urlencode($data['PRODUCT'])."&FNAME=".urlencode($data['FNAME'])."&ADDRESS=".urlencode($data['ADDRESS'])."&LNAME=".urlencode($data['LNAME'])."&HS_GRAD_YEAR=".urlencode($data['HS_GRAD_YEAR'])."&COUNTRY_RESIDENCE=".urlencode($data['COUNTRY_RESIDENCE'])."&HIGHEST_LEVEL=".urlencode($data['HIGHEST_LEVEL'])."&CITY=".urlencode($data['CITY'])."&EMAIL=".urlencode($data['EMAIL'])."&MASTER_BRAND=".urlencode($data['MASTER_BRAND']);
+		
+		$url = "https://www.leadpointdelivery.com/13944/direct.ilp?AID=".urlencode($data['AID'])."&ZIP=".urlencode($data['ZIP'])."&BID_STATE=".urlencode($data['BID_STATE'])."&PRI_PHONE=".urlencode($data['PRI_PHONE'])."&PROGRAM_TYPE=".urlencode($data['PROGRAM_TYPE'])."&IP_ADDRESS=127.0.0.1&SEC_PHONE=".urlencode($data['SEC_PHONE'])."&CAPTURE_TIME=".urlencode($data['CAPTURE_TIME'])."&PRODUCT=".urlencode($data['PRODUCT'])."&FNAME=".urlencode($data['FNAME'])."&ADDRESS=".urlencode($data['ADDRESS'])."&LNAME=".urlencode($data['LNAME'])."&HS_GRAD_YEAR=".urlencode($data['HS_GRAD_YEAR'])."&COUNTRY_RESIDENCE=".urlencode($data['COUNTRY_RESIDENCE'])."&HIGHEST_LEVEL=".urlencode($data['HIGHEST_LEVEL'])."&CITY=".urlencode($data['CITY'])."&EMAIL=".urlencode($data['EMAIL'])."&MASTER_BRAND=".urlencode($data['MASTER_BRAND']);
+		
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, "https://www.leadpointdelivery.com/13944/direct.ilp");
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
 	    $output = curl_exec($ch);
 	    curl_close($ch);   
