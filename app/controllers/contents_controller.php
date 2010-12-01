@@ -10,22 +10,59 @@ class ContentsController extends AppController {
 		$this->set('content', $content);
 		
 		//Subject Menu
-		$this->loadModel('Subject');
-		$subjects = $this->Subject->find('threaded');
-		$this->set('subjects', $subjects);
+		$this->_setSubjectMenu();
 		
 		//Subject Options for Search form
-		$subject_opts = array_merge(array(0=> 'Select a Subject'), $this->Subject->find('list'));
-		$this->set('subject_opts', $subject_opts);
+		$this->_setSubjectForm();
 		
 		//DegreeType Menu
-		$this->loadModel('DegreeType');
-		$degrees = $this->DegreeType->find('threaded');
-		$this->set('degrees', $degrees);
+		$this->_setDegreeTypeMenu();
 		
 		//DegreeType Options for Search form
-		$degree_opts = array_merge(array(0=> 'Select a Degree'),  $this->DegreeType->find('list'));
-		$this->set('degree_opts', $degree_opts);
+		$this->_setDegreeTypeForm();
+		
+		//Resource Menu
+		$this->_setResourceMenu();
+		
+		//Set layout
+		$this->layout = 'defaultpage';
+	}
+	
+	function resources($id = null) {
+		if(!$id) {
+			//Resource content
+			$resource = $this->Content->find('first', array('conditions' => array('ctid' => 2)));
+			$this->set('resource', $resource);
+			
+			//Resources list
+			$resources = $this->Content->find('all', array('conditions' => array('ctid' => 3)));
+			$this->set('resources', $resources);
+			
+			
+		}
+		else {
+			//Resource content
+			$this->id = $id;
+			
+			$this->set('resource', $this->Content->read());
+		}
+		
+		$this->set('id', $id);
+		
+		//Subject Menu
+		$this->_setSubjectMenu();
+		
+		//Subject Options for Search form
+		$this->_setSubjectForm();
+		
+		//DegreeType Menu
+		$this->_setDegreeTypeMenu();
+		
+		//DegreeType Options for Search form
+		$this->_setDegreeTypeForm();
+		
+		//Resource Menu
+		$this->_setResourceMenu();
 		
 		//Set layout
 		$this->layout = 'defaultpage';
