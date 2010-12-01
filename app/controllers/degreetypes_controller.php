@@ -21,6 +21,7 @@ class DegreeTypesController extends AppController {
 		$this->_setSubjectForm();		
 		$this->_setDegreeTypeMenu();
 		$this->_setDegreeTypeForm();
+		$this->_setResourceMenu();
 	}
 }
 ?>
