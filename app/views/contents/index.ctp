@@ -2,8 +2,8 @@
 
 <div class="blurb">
 	<div class="fleft">
-		<h1>Connecting You With The Right Online School</h1>
-		<p>Guide To Online Schools is an online education directory that specializes in online degrees, online schools, and distance learning. We help <strong>thousands of adult students</strong> find the best online schools, online colleges, and online universities with the best degrees and distance learning programs. Please be sure to visit our online school reviews to find feedback from real students at accredited online universities.</p>
+		<h1><?php echo $content['Content']['title']?></h1>
+		<p><?php echo $content['Content']['content']?></p>
 	</div>
 	<div class="fright">
 		<?php
