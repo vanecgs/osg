@@ -44,6 +44,8 @@
 			if(!empty($school['School']['image'])):
 				echo $html->image($school['School']['image'], array('alt' => $school['School']['name'], 'class' => 'logo', 'width' => 311, 'height' => 80, 'align' => 'middle' ,'url' => $school['School']['url']));			
 			endif;
+			
+			if(!empty($dform)):
 		?>
 				
 		<h2>Request Information Form</h2>
@@ -51,19 +53,20 @@
 		<p>Please fill out the form below to get more information about the programs offered by University of Phoenix - Business.</p>
 		
 		
-		<?php 
+		<?php
 			echo $this->Form->create(null, array('default' => false)); 
 			
 			foreach($dform['FormSpec']['FormPages']['FormPage']['Section']['Field'] as $field):
 			
-				echo '<label>'.$field['label'].'</label>';
+				
 				
 				switch($field['type']) {
 					case 'TEXT':
+						echo '<label>'.$field['label'].'</label>';
 						echo '<input type="text" id="'.$field['name'].'" name="'.$field['name'].'">';
 						break;
 					case 'SELECT':
-						//pr($field);
+						echo '<label>'.$field['label'].'</label>';
 						echo '<select style="width:250px" id="'.$field['name'].'" name="'.$field['name'].'">';
 						
 						if($field['Options']['Option']):
@@ -78,11 +81,16 @@
 						
 						echo '</select>';
 						break;
+					case 'HIDDEN':
+						echo '<input type="hidden" id="'.$field['name'].'" name="'.$field['name'].'" value="'.$field['defaultValue'].'">';
+						break;
 				}	
 			
 			endforeach;
 			echo '<input type="hidden" id="SCHOOL_ID" name="SCHOOL_ID" value="'.$school['School']['sid'].'">';
 			echo $this->Form->end(array('label' => 'Request Information','value' => 'Request Information', 'id' => 'post-lead','div' => array('class' => 'button'))); 
+			
+			endif;
 		?>
 	</form> 
 
