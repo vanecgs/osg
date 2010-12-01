@@ -33,6 +33,7 @@ $(document).ready(function() {
 									city: $('#CITY').val(),
 									current_age: $('#CURRENT_AGE').val(),
 									email: $('#EMAIL').val(),
+									master_brand: $('#MASTER_BRAND').val(),
 									school_id: $('#SCHOOL_ID').val()
 									}, 
 		function(data) {
