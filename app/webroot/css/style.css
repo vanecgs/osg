@@ -1137,5 +1137,21 @@ div.code-coverage-results span.result-good {
 	color: #0a0;
 }
 
+div.resource_list {
+	margin-top: 20px;
+}
 
+div.resource_list ul li {
+	margin-bottom:10px;
+}
 
+div.resource_list ul li a{
+	background:url("../img/pics/bullet.gif") no-repeat scroll 0 6px transparent;
+	color:#00548C;
+	display:inline;
+	font-size:14px;
+	font-weight:normal;
+	padding:0 0 0 10px;
+	text-decoration:none;
+	text-transform:none;
+}
