@@ -27,5 +27,12 @@ class AppController extends Controller {
 		$degree_opts = array_merge(array(0=> 'Select a Degree'),  $this->DegreeType->find('list'));
 		$this->set('degree_opts', $degree_opts);
 	}
+	
+	function _setResourceMenu() {
+		//Set Resource list for menu
+		$this->loadModel('Content');
+		$resources = $this->Content->find('all', array('conditions' => array('ctid' => 3), 'limit' => 10));
+		$this->set('resource_list', $resources);
+	}
 }
 ?>
