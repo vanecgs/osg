@@ -62,26 +62,8 @@
 	<?php echo $this->element('subjectmenu'); ?>
  
 	<?php echo $this->element('degreemenu'); ?>
-
-	<div class="box"> 
-		<h3>Resources</h3> 
-		<ul> 
-			<li class="odd"><a href="#">Dummy Title Odd</a></li> 
-			<li><a href="#">Dummy Title Even</a></li>
-			<li class="odd"><a href="#">Dummy Title Odd</a></li> 
-			<li><a href="#">Dummy Title Even</a></li>
-			<li class="odd"><a href="#">Dummy Title Odd</a></li> 
-			<li><a href="#">Dummy Title Even</a></li>
-			<li class="odd"><a href="#">Dummy Title Odd</a></li> 
-			<li><a href="#">Dummy Title Even</a></li>
-			<li class="odd"><a href="#">Dummy Title Odd</a></li> 
-			<li><a href="#">Dummy Title Even</a></li>
-			<li class="odd"><a href="#">Dummy Title Odd</a></li> 
-			<li><a href="#">Dummy Title Even</a></li>
-			<li class="odd"><a href="#">Dummy Title Odd</a></li> 
-			<li><a href="#">Dummy Title Even</a></li>
-		</ul> 
-	</div> 
+	
+	<?php echo $this->element('resources'); ?>
 
 </div>
 
