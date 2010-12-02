@@ -1,9 +1,14 @@
 <?php
 class ProgramsController extends AppController {
+
 	var $name = 'Programs';
-	var $scaffold = 'admin';
 	var $helpers = array('Javascript');
+	var $components = array('Auth');
 	
+	function beforeFilter() {
+		$this->Auth->allow('subject','degree','subjectsub','search','degreeBySubjects');	
+    }
+
 	function subject($subject) {
 		$this->layout = 'result';
 		
@@ -198,6 +203,95 @@ class ProgramsController extends AppController {
 		
 		$this->set('degrees', $degrees);
 
+	}
+
+	function admin_index() {
+		if($this->Auth->user('group_id') == 1) {
+			$this->Program->recursive = 0;
+			$this->set('programs', $this->paginate());
+		}
+		else {
+			$this->redirect('/users/view/'.$this->Auth->user('cid'));
+		}
+	}
+
+	function admin_view($id = null) {
+		if($this->Auth->user('group_id') == 1) {
+			if (!$id) {
+				$this->Session->setFlash(__('Invalid program', true));
+				$this->redirect(array('action' => 'index'));
+			}
+			$this->set('program', $this->Program->read(null, $id));
+		}
+		else {
+			$this->redirect('/users/view/'.$this->Auth->user('cid'));
+		}
+	}
+
+	function admin_add() {
+		if($this->Auth->user('group_id') == 1) {
+			if (!empty($this->data)) {
+				$this->Program->create();
+				if ($this->Program->save($this->data)) {
+					$this->Session->setFlash(__('The program has been saved', true));
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('The program could not be saved. Please, try again.', true));
+				}
+			}
+			$degreeTypes = $this->Program->DegreeType->find('list');
+			$schools = $this->Program->School->find('list');
+			$subjectSubs = $this->Program->SubjectSubs->find('list');
+			$this->set(compact('degreeTypes', 'schools', 'subjectSubs'));
+		}
+		else {
+			$this->redirect('/users/view/'.$this->Auth->user('cid'));
+		}
+	}
+
+	function admin_edit($id = null) {
+		if($this->Auth->user('group_id') == 1) {
+			if (!$id && empty($this->data)) {
+				$this->Session->setFlash(__('Invalid program', true));
+				$this->redirect(array('action' => 'index'));
+			}
+			if (!empty($this->data)) {
+				if ($this->Program->save($this->data)) {
+					$this->Session->setFlash(__('The program has been saved', true));
+					$this->redirect(array('action' => 'index'));
+				} else {
+					$this->Session->setFlash(__('The program could not be saved. Please, try again.', true));
+				}
+			}
+			if (empty($this->data)) {
+				$this->data = $this->Program->read(null, $id);
+			}
+			$degreeTypes = $this->Program->DegreeType->find('list');
+			$schools = $this->Program->School->find('list');
+			$subjectSubs = $this->Program->SubjectSubs->find('list');
+			$this->set(compact('degreeTypes', 'schools', 'subjectSubs'));
+		}
+		else {
+			$this->redirect('/users/view/'.$this->Auth->user('cid'));
+		}
+	}
+
+	function admin_delete($id = null) {
+		if($this->Auth->user('group_id') == 1) {
+			if (!$id) {
+				$this->Session->setFlash(__('Invalid id for program', true));
+				$this->redirect(array('action'=>'index'));
+			}
+			if ($this->Program->delete($id)) {
+				$this->Session->setFlash(__('Program deleted', true));
+				$this->redirect(array('action'=>'index'));
+			}
+			$this->Session->setFlash(__('Program was not deleted', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		else {
+			$this->redirect('/users/view/'.$this->Auth->user('cid'));
+		}
 	}
 }
 ?>

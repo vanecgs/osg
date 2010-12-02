@@ -16,7 +16,7 @@ class UsersController extends AppController {
 		
 		$this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'view', $this->Auth->user('cid'));
 		
-		$this->Auth->allow('login','isAuth');
+		$this->Auth->allow('login','logout','isAuth');
 		
     }
 	
@@ -75,6 +75,10 @@ class UsersController extends AppController {
 		$this->redirect(array('action' => 'index'));
 	}
 
+	function admin_login() {
+        $this->redirect('/users/login/');
+    }
+	
 	function admin_index() {
 		if($this->Auth->user('group_id') == 1) {
 			$this->User->recursive = 0;
