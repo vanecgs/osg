@@ -32,5 +32,5 @@
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
 /* */
-	Router::connect('/degrees', array('controller' => 'degreetypes', 'action' => 'index'));
+	Router::connect('/degrees', array('controller' => 'degree_types', 'action' => 'index'));
 	Router::connect('/resources/*', array('controller' => 'contents', 'action' => 'resources'));
