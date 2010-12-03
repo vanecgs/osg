@@ -1,8 +1,8 @@
 <div id="navigation"> 
 	<ul> 
-		<li><a href="/onlineschool">Home</a></li> 
-		<li><a href="/onlineschool/schools/">Online Schools</a></li> 
-		<li><a href="/onlineschool/degrees/">Online Degrees</a></li> 
-		<li><a href="/onlineschool/resources/">Online Education Resources</a></li> 
+		<li><?php echo $this->Html->link('Home', array('controller'=>'')); ?></li> 
+		<li><?php echo $this->Html->link('Online Schools', array('controller'=>'schools')); ?></li> 
+		<li><?php echo $this->Html->link('Online Degrees', array('controller'=>'degrees')); ?></li> 
+		<li><?php echo $this->Html->link('Online Education Resources', array('controller'=>'resources')); ?></li> 
 	</ul> 
 </div>
