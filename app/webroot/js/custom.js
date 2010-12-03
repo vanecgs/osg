@@ -1,4 +1,4 @@
-var url = "http://localhost/onlineschool/"
+var url = 'http://'+window.location.hostname+'/onlineschool/';
 
 var is_click = false;
 
