@@ -16,6 +16,7 @@
 	
 	if(!empty($javascript)):
 		echo $javascript->link('jquery.js');
+		echo $javascript->link('jquery-ui.js');
 		echo $javascript->link('custom.js');
 	endif;
 	Configure::load('osg');
