@@ -29,6 +29,9 @@ class UsersController extends AppController {
         $this->redirect($this->Auth->logout());
     }
 	
+	function isAuth() {
+		$this->layout = 'ajax';
+	}
 
 	function index() {		
 		$this->redirect(array('action' => 'view', $this->Auth->user('cid')));
