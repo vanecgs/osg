@@ -84,18 +84,21 @@ class SchoolsController extends AppController {
 		
 		if($school['School']['parent_brand']) {
 			$str = preg_replace('/\s+/', '', $school['School']['parent_brand']);
-			$inp = fopen('xml/form-'.$str.'.txt', 'r');
-			$content = '';
 			
-			while (!feof($inp)) {
-				$content .= fread($inp, 8192);
+			if(file_exists('xml/form-'.$str.'.txt')) {
+				$inp = fopen('xml/form-'.$str.'.txt', 'r');
+				$content = '';
+				
+				while (!feof($inp)) {
+					$content .= fread($inp, 8192);
+				}
+				
+				fclose($inp);
+				
+				$form = json_decode($content, true);
+				
+				$this->set('dform', $form);
 			}
-			
-			fclose($inp);
-			
-			$form = json_decode($content, true);
-			
-			$this->set('dform', $form);
 			
 		}
 				
