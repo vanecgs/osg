@@ -1155,3 +1155,8 @@ div.resource_list ul li a{
 	text-decoration:none;
 	text-transform:none;
 }
+
+div.users {
+	width:90%;
+	border:none;
+}

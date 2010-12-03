@@ -16,7 +16,7 @@ class UsersController extends AppController {
 		
 		$this->Auth->loginRedirect = array('controller' => 'users', 'action' => 'view', $this->Auth->user('cid'));
 		
-		$this->Auth->allow('login','logout','isAuth');
+		$this->Auth->allow('login','logout','isAuth','register');
 		
     }
 	
@@ -37,6 +37,18 @@ class UsersController extends AppController {
 		$this->redirect(array('action' => 'view', $this->Auth->user('cid')));
 		//$this->User->recursive = 0;
 		//$this->set('users', $this->paginate());
+	}
+	
+	function register() {
+		if (!empty($this->data)) {
+			$this->User->create();
+			if ($this->User->save($this->data)) {
+				$this->Session->setFlash(__('The user has been saved', true));
+				$this->redirect(array('action' => 'index'));
+			} else {
+				$this->Session->setFlash(__('The user could not be saved. Please, try again.', true));
+			}
+		}
 	}
 
 	function view($id = null) {
