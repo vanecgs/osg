@@ -29,6 +29,23 @@ class ContentsController extends AppController {
 		//Resource Menu
 		$this->_setResourceMenu();
 		
+		//Random Schools
+		$this->loadModel('School');
+		$c = $this->School->find('count');
+		$c1 = rand(1, $c);
+		$c2 = rand(1, $c);
+		$c3 = rand(1, $c);
+		
+		$set1 = $this->School->find('first',array('conditions' => array('School.sid' => $c1)));
+		$set2 = $this->School->find('first',array('conditions' => array('School.sid' => $c2)));
+		$set3 = $this->School->find('first',array('conditions' => array('School.sid' => $c3)));
+		
+		$set = array();
+		
+		array_push($set, $set1, $set2, $set3);
+		
+		$this->set('set', $set);
+		
 		//Set layout
 		$this->layout = 'defaultpage';
 	}
