@@ -7,6 +7,8 @@
 
 <h1><?php echo $school['School']['name']?></h1>
 
+<h3><?php echo $school['School']['punch']?></h3>
+
 <p><?php echo $school['School']['description']?></p>
 
 <?php foreach($degreestype as $degree): ?>
@@ -23,7 +25,7 @@
 <?php endforeach;?>
 
 <?php if(!empty($school['School']['accred_by'])): ?>
-<h2>Accrediting Agency</h2>
+<h2>Accreditation Information</h2>
 <ul><li><?php echo $school['School']['accred_by']?></li></ul>
 <?php endif;?>
 
@@ -43,14 +45,16 @@
 		<?php
 			if(!empty($school['School']['image'])):
 				echo $html->image($school['School']['image'], array('alt' => $school['School']['name'], 'class' => 'logo', 'width' => 311, 'height' => 80, 'align' => 'middle' ,'url' => $school['School']['url']));			
+			else:
+				echo $html->image($school['School']['logo'], array('alt' => $school['School']['name'], 'class' => 'logo', 'width' => 120, 'height' => 60, 'align' => 'middle' ,'url' => $school['School']['url'], 'style' =>'margin:10px 140px'));
 			endif;
 			
 			if(!empty($dform)):
 		?>
 				
-		<h2>Request Information Form</h2>
+		<h2>Request Information</h2>
 		
-		<p>Please fill out the form below to get more information about the programs offered by University of Phoenix - Business.</p>
+		<p>Please fill out the form below to get more information about the programs offered by University of <?php echo $school['School']['name']?>.</p>
 		
 		
 		<?php
