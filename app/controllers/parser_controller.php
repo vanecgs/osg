@@ -63,16 +63,16 @@ class ParserController extends AppController {
 				
 				if($xmlAsArray['FormSpec']) {
 					$str = preg_replace('/\s+/', '', $xmlAsArray['FormSpec']['masterBrandName']);
-					file_put_contents('xml/form-'.$str.'.txt', $content);
+					file_put_contents('xml/form-'.$str.'.txt', $string);
 				}
 				elseif($xmlAsArray['Brand']) {
-					file_put_contents('xml/brand-'.$brand.'.txt', $content);
+					file_put_contents('xml/brand-'.$brand.'.txt', $string);
 				}
 				elseif($xmlAsArray['Buyer']) {
-					file_put_contents('xml/buyer-'.$xmlAsArray['Buyer']['id'].'.txt', $content);
+					file_put_contents('xml/buyer-'.$xmlAsArray['Buyer']['id'].'.txt', $string);
 				}
 				else {
-					file_put_contents('xml/osg-'.$brand.'.txt', $content);
+					file_put_contents('xml/osg-'.$brand.'.txt', $string);
 				}
 			}			
 		}
@@ -86,16 +86,16 @@ class ParserController extends AppController {
 			
 			if($xmlAsArray['FormSpec']) {
 				$str = preg_replace('/\s+/', '', $xmlAsArray['FormSpec']['masterBrandName']);
-				file_put_contents('xml/form-'.$str.'.txt', $content);
+				file_put_contents('xml/form-'.$str.'.txt', $string);
 			}
 			elseif($xmlAsArray['Brand']) {
-				file_put_contents('xml/brand-'.$brand.'.txt', $content);
+				file_put_contents('xml/brand-'.$brand.'.txt', $string);
 			}
 			elseif($xmlAsArray['Buyer']) {
-				file_put_contents('xml/buyer-'.$xmlAsArray['Buyer']['id'].'.txt', $content);
+				file_put_contents('xml/buyer-'.$xmlAsArray['Buyer']['id'].'.txt', $string);
 			}
 			else {
-				file_put_contents('xml/osg-'.$brand.'.txt', $content);
+				file_put_contents('xml/osg-'.$brand.'.txt', $string);
 			}
 	
 		}
@@ -103,6 +103,8 @@ class ParserController extends AppController {
 		$this->set('xml', $xmlAsArray);
 		
 		if(!empty($xmlAsArray) && !empty($xmlAsArray['Brand'])) $this->_saveXml($xmlAsArray, $brand);
+		
+		if(!empty($xmlAsArray) && !empty($xmlAsArray['Buyer'])) $this->_saveCap($xmlAsArray);
 
 	}
 	
@@ -241,6 +243,28 @@ class ParserController extends AppController {
 			}
 			
 			return $this->School->id;
+		}
+	}
+	
+	function _saveCap($xml = null) {
+		if(!empty($xml)) {
+			foreach($xml['Buyer']['OrderSet']['Order'] as $order) {
+				$brand = $order['OrderChange']['Brand']['id'];
+				$leadWeekday = $order['OrderChange']['Caps']['maxLeadsPerWeekday'];
+				$leadWeekend = $order['OrderChange']['Caps']['maxLeadsPerWeekendDay'];
+				
+				if(!empty($brand)) {
+					$this->loadModel('NetworksSchools');
+					$this->loadModel('School');
+					$school = $this->School->find('first', array('conditions' => array('School.ws_id' => $brand)));
+					if(!empty($school)) {
+						$ns = $this->NetworksSchools->find('first', array('conditions' => array('NetworksSchools.sid' => $school['School']['sid'], 'NetworksSchools.nid' => 1)));
+						$ns['NetworksSchools']['cap_weekday'] = $leadWeekday;
+						$ns['NetworksSchools']['cap_weekend'] = $leadWeekend;
+						$this->NetworksSchools->save($ns);
+					}
+				}
+			}
 		}
 	}
 }
