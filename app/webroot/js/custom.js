@@ -2,7 +2,7 @@ var url = 'http://'+window.location.hostname+'/onlineschool/';
 
 var is_click = false;
 
-$(document).ready(function() {
+$(document).ready(function() {	
 	$('.form_button').html('<input type="submit" value="">');
 	
 	$('#ProgramsSubjects').change(function() {
@@ -40,7 +40,14 @@ $(document).ready(function() {
 			if(data) {
 				switch (data['Response']['sm']) {
 					case 'OK':
-						$('.col_b').html('<p>'+data['Response']['buyer']['dsc']+'</p><h3>Phone</h3><p>'+data['Response']['buyer']['ph']+'</p><h3>Email</h3><p>'+data['Response']['buyer']['em']+'</p>');
+						$('.col_b').html('<p>Your request has been accepted. You&rsquo;ll be getting more information shortly.</p><div id="randomschools"></div>');
+						$.post(url+'schools/random','',function(data) {
+							$('#randomschools').append('<h1>More Schools</h1>');
+							for(var i=0;i<data.length;i++) {
+								$('#randomschools').append('<div class="ind-random"><img src="'+data[i]['School']['logo']+'"><a href="'+url+'schools/info/'+data[i]['School']['sid']+'"><h2>'+data[i]['School']['name']+'</h2></a></div>');
+							}
+						},'json');
+						
 						break;
 					case 'QUEUED':
 						$('#dialog-content').html('<p>System processor is temporarily down, you information will be processed when system is online.</p>');

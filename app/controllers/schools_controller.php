@@ -6,7 +6,7 @@ class SchoolsController extends AppController {
 	var $components = array('Auth','RequestHandler');
 
 	function beforeFilter() {
-        $this->Auth->allow('index','info','lead');
+        $this->Auth->allow('index','info','lead','random');
 	}
 	
 	function index() {
@@ -163,13 +163,31 @@ class SchoolsController extends AppController {
 		
 		$this->set('response', $xmlAsArray);
 
-		if($xmlAsArray['Response']['sm'] == 'OK') {
-			$this->loadModel('NetworksSchools');
-			$ns = $this->NetworksSchools->find('first', array('conditions' => array('sid' => $this->params['form']['school_id'])));
-			$ns['NetworksSchools']['cap'] = $ns['NetworksSchools']['cap'] - 1;
-			$this->NetworksSchools->save($ns);
-		}
+		//if($xmlAsArray['Response']['sm'] == 'OK') {
+//			$this->loadModel('NetworksSchools');
+//			$ns = $this->NetworksSchools->find('first', array('conditions' => array('sid' => $this->params['form']['school_id'])));
+//			$ns['NetworksSchools']['cap'] = $ns['NetworksSchools']['cap'] - 1;
+//			$this->NetworksSchools->save($ns);
+//		}
 		
+		$this->layout = 'ajax';
+	}
+	
+	function random() {
+		$c = $this->School->find('count');
+		$c1 = rand(1, $c);
+		$c2 = rand(1, $c);
+		$c3 = rand(1, $c);
+		
+		$set1 = $this->School->find('first',array('conditions' => array('School.sid' => $c1)));
+		$set2 = $this->School->find('first',array('conditions' => array('School.sid' => $c2)));
+		$set3 = $this->School->find('first',array('conditions' => array('School.sid' => $c3)));
+		
+		$set = array();
+		
+		array_push($set, $set1, $set2, $set3);
+		
+		$this->set('set', $set);
 		$this->layout = 'ajax';
 	}
 

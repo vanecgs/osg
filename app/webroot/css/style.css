@@ -1160,3 +1160,13 @@ div.users {
 	width:90%;
 	border:none;
 }
+
+.ind-random {
+	width:100%;
+	height:100px;
+}
+
+.ind-random img {
+	float: left;
+    margin-right: 15px !important;
+}
