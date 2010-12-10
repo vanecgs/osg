@@ -67,30 +67,39 @@
 <!-- Start: Popular Schools module -->
 
 <div id="schools"> 
-<h3>Most Popular Schools</h3> 
+
+<?php foreach($set as $s): ?>
 
 <!-- Start: School Box -->
 
 <div class="school_box"> 
 	<div class="school_box_header">
-		<h3>School Title</h3>
-		<h5><a href="#">Learn More</a></h5>
+		<h3><?php echo $s['School']['name']?></h3>
+		<h5><?php echo $this->Html->link('LEARN MORE', array('controller' => 'schools', 
+															'action' => 'info', 
+															$s['School']['sid']));?></h5>
 	</div>
 	<div class="school_box_body">
 		<div class="resume">
-			<a href="#"><img src="pics/ai_institute.gif" alt="ai_institute" width="90" height="90" /></a>
-			<h4>School slogan</h4>
+			<?php
+				echo $html->image($s['School']['logo'], array('alt' => $s['School']['name'], 'width' => 120, 'height' => 60, 'url' => array('controller' => 'schools', 'action' => 'info', $s['School']['sid'])));
+			?>
+			<h4><?php echo $s['School']['punch']?></h4>
 			<ul>
 				<li><a href="#">Certificate 1</a></li>
 				<li><a href="#">Certificate 1</a></li>
 				<li><a href="#">Certificate 1</a></li>
 				<li><a href="#">Certificate 1</a></li>
 			</ul>
-			<span><a href="#">See More School Programs &raquo;</a></span>
+			<span><?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
+															'action' => 'info', 
+															$s['School']['sid']));?></span>
 		</div>
 		<div class="extract">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-			<a href="#">See More School Programs &raquo;</a>
+			<p><?php if(empty($s['School']['s_desc'])): echo substr($s['School']['description'],0,200).'...'; else: echo $s['School']['s_desc']; endif; ?></p>
+			<?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
+															'action' => 'info', 
+															$s['School']['sid']));?>
 		</div>
 		
 		<hr class="clear" />
@@ -124,22 +133,22 @@
 					<!-- Start: File 2 -->
 					<tr>
 						<td>
-							<p>Quarter</p>
+							<p><?php if($s['School']['sched'] == -1): echo 'Unknown'; else: echo $s['School']['sched']; endif;?></p>
 						</td>
 						<td>
-							<p>Unknown</p>
+							<p><?php if(empty($s['School']['faculty'])): echo 'Unknown'; else: echo $s['School']['faculty']; endif;?></p>
 						</td>
 						<td>
-							<p>YES</p>
+							<p><?php echo ucwords($s['School']['accred']) ?></p>
 						</td>
 						<td>
-							<p>$28,380/yr.</p>
+							<p><?php if(empty($s['School']['tuition'])): echo 'Unknown'; else: echo '$'.$s['School']['tuition']; endif;?></p>
 						</td>
 						<td>
-							<p>Unknown</p>
+							<p><?php if(empty($s['School']['books'])): echo 'Unknown'; else: echo '$'.$s['School']['books']; endif;?></p>
 						</td>
 						<td>
-							<p>80%</p>
+							<p><?php if($s['School']['f_aid'] == -0.99): echo 'Unknown'; else: echo $s['School']['f_aid'].'%'; endif;?></p>
 						</td>
 					</tr>
 					<!-- End: File 2 -->
@@ -151,171 +160,7 @@
 
 <!-- End: School Box -->
 
-
-<!-- Start: School Box -->
-
-<div class="school_box"> 
-	<div class="school_box_header">
-		<h3>School Title</h3>
-		<h5><a href="#">Learn More</a></h5>
-	</div>
-	<div class="school_box_body">
-		<div class="resume">
-			<a href="#"><img src="pics/ai_institute.gif" alt="ai_institute" width="90" height="90" /></a>
-			<h4>School slogan</h4>
-			<ul>
-				<li><a href="#">Certificate 1</a></li>
-				<li><a href="#">Certificate 1</a></li>
-				<li><a href="#">Certificate 1</a></li>
-				<li><a href="#">Certificate 1</a></li>
-			</ul>
-			<span><a href="#">See More School Programs &raquo;</a></span>
-		</div>
-		<div class="extract">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-			<a href="#">See More School Programs &raquo;</a>
-		</div>
-		
-		<hr class="clear" />
-		
-		<div class="school_table">
-			<table cellspacing="0" cellpadding="0" border="0" width="100%">
-				<tbody>
-					<!-- Start: File 1 -->
-					<tr>
-						<td class="topR">
-							<h6>Schedule</h6>
-						</td>
-						<td class="topR">
-							<h6>Faculty / Student Ratio</h6>
-						</td>
-						<td class="topR">
-							<h6>Accredited</h6>
-						</td>
-						<td class="topR">
-							<h6>Tuition</h6>
-						</td>
-						<td class="topR">
-							<h6>Book Costs</h6>
-						</td>
-						<td class="topR">
-							<h6>% Receiving Financial Aid</h6>
-						</td>
-					</tr>
-					<!-- End: File 1 -->
-					
-					<!-- Start: File 2 -->
-					<tr>
-						<td>
-							<p>Quarter</p>
-						</td>
-						<td>
-							<p>Unknown</p>
-						</td>
-						<td>
-							<p>YES</p>
-						</td>
-						<td>
-							<p>$28,380/yr.</p>
-						</td>
-						<td>
-							<p>Unknown</p>
-						</td>
-						<td>
-							<p>80%</p>
-						</td>
-					</tr>
-					<!-- End: File 2 -->
-				</tbody>
-		 </table>
-		</div>
-	</div>
-</div>
-
-<!-- End: School Box -->
-
-
-<!-- Start: School Box -->
-
-<div class="school_box"> 
-	<div class="school_box_header">
-		<h3>School Title</h3>
-		<h5><a href="#">Learn More</a></h5>
-	</div>
-	<div class="school_box_body">
-		<div class="resume">
-			<a href="#"><img src="pics/ai_institute.gif" alt="ai_institute" width="90" height="90" /></a>
-			<h4>School slogan</h4>
-			<ul>
-				<li><a href="#">Certificate 1</a></li>
-				<li><a href="#">Certificate 1</a></li>
-				<li><a href="#">Certificate 1</a></li>
-				<li><a href="#">Certificate 1</a></li>
-			</ul>
-			<span><a href="#">See More School Programs &raquo;</a></span>
-		</div>
-		<div class="extract">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-			<a href="#">See More School Programs &raquo;</a>
-		</div>
-		
-		<hr class="clear" />
-		
-		<div class="school_table">
-			<table cellspacing="0" cellpadding="0" border="0" width="100%">
-				<tbody>
-					<!-- Start: File 1 -->
-					<tr>
-						<td class="topR">
-							<h6>Schedule</h6>
-						</td>
-						<td class="topR">
-							<h6>Faculty / Student Ratio</h6>
-						</td>
-						<td class="topR">
-							<h6>Accredited</h6>
-						</td>
-						<td class="topR">
-							<h6>Tuition</h6>
-						</td>
-						<td class="topR">
-							<h6>Book Costs</h6>
-						</td>
-						<td class="topR">
-							<h6>% Receiving Financial Aid</h6>
-						</td>
-					</tr>
-					<!-- End: File 1 -->
-					
-					<!-- Start: File 2 -->
-					<tr>
-						<td>
-							<p>Quarter</p>
-						</td>
-						<td>
-							<p>Unknown</p>
-						</td>
-						<td>
-							<p>YES</p>
-						</td>
-						<td>
-							<p>$28,380/yr.</p>
-						</td>
-						<td>
-							<p>Unknown</p>
-						</td>
-						<td>
-							<p>80%</p>
-						</td>
-					</tr>
-					<!-- End: File 2 -->
-				</tbody>
-		 </table>
-		</div>
-	</div>
-</div>
-
-<!-- End: School Box -->
+<?php endforeach; ?>
 
 </div>
 
