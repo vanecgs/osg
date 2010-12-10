@@ -85,12 +85,6 @@
 				echo $html->image($s['School']['logo'], array('alt' => $s['School']['name'], 'width' => 120, 'height' => 60, 'url' => array('controller' => 'schools', 'action' => 'info', $s['School']['sid'])));
 			?>
 			<h4><?php echo $s['School']['punch']?></h4>
-			<ul>
-				<li><a href="#">Certificate 1</a></li>
-				<li><a href="#">Certificate 1</a></li>
-				<li><a href="#">Certificate 1</a></li>
-				<li><a href="#">Certificate 1</a></li>
-			</ul>
 			<span><?php echo $this->Html->link('See More School Programs >>', array('controller' => 'schools', 
 															'action' => 'info', 
 															$s['School']['sid']));?></span>
