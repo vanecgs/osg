@@ -56,7 +56,7 @@ class ProgramsController extends AppController {
 		$schools = $this->School->Programs->find('all', array('conditions' => array('Programs.dtid' => $degree), 'fields' => array('DISTINCT Programs.sid','School.*')));
 		$this->set('schools', $schools);
 		
-		$dtschools = $this->School->Programs->find('threaded', array('conditions' => array('Programs.dtid' => $degree)));
+		$dtschools = $this->School->Programs->find('threaded', array('limit'=> 5,'conditions' => array('Programs.dtid' => $degree)));
 		$this->set('dtschools', $dtschools);
 		
 		//Set Menus
